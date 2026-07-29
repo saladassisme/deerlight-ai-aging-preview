@@ -6,49 +6,49 @@ type ProductKey = 'silver-os' | 'skillhub' | 'community' | 'labs'
 const copy = {
   zh: {
     nav: { ecosystem: '生态', products: '产品', memoir: '回忆录', contact: '联系' },
-    heroEyebrow: 'AI FOR AGING',
-    heroTitle1: '让更长的人生',
-    heroTitle2: '也更丰盛',
-    heroDesc: 'Deerlight 构建面向长寿时代的 AI 产品、能力与基础设施，让技术承担复杂度，让人保有选择、尊严与连接。',
+    heroTitle1: '让科技延展生命，',
+    heroTitle2: '而不是复杂度',
+    heroDesc: 'Deerlight 构建面向长寿时代的 AI 产品、能力与基础设施，让技术承担认知负担，让人保有选择、尊严与连接。',
+    heroChip: '更少负担，更多人生',
     explore: '探索产品',
-    aboutLead: '我们不把老年人简化成“需要被照顾的人”，而是把他们视为仍在学习、创造、连接和做决定的人。',
-    aboutTitle: '让 AI 承担认知负担，把人生还给人本身。',
-    aboutBody: '从人生故事、数字生活到家庭协作与服务网络，Deerlight 以更安静、更可信、更可解释的方式，把 AI 嵌入长寿社会的日常。',
-    ecosystemTitle: '一个面向长寿社会的产品生态',
-    ecosystemDesc: '从单一产品走向操作系统、能力市场、社区与研究平台。',
-    cards: {
-      memoir: ['Deerlight Memoir', '小鹿光年', '通过语音访谈、动态追问、家庭共创与 AI 成文，帮助每个人保存一生的故事。'],
+    aboutLead: '我们打造与人生后半程共同前进的 AI 系统，而不是凌驾于人之上的技术。',
+    hello: '联系我们',
+    aboutCta: '探索生态',
+    aboutTitle: '我们为更长的人生构建 AI 产品、能力与基础设施。更重要的是，在技术日益复杂的时代，帮助每个人继续掌握自己的生活。',
+    productTitle: '扩展人生，而不是扩展复杂度。',
+    productIntro: '从回忆录产品出发，逐步形成银龄操作系统、能力市场、知识网络与研究平台。',
+    workTitle: '一起构建长寿社会的 AI 基础设施',
+    workBody: '合作试点、产品共创、行业研究与能力接入。',
+    workCta: '开始合作',
+    products: {
       silver: ['SilverOS', '银龄 AI 操作系统', '让身份、记忆、家庭、设备、安全与 Agent 能力跨设备协同。'],
       skillhub: ['SkillHub', '银龄 AI 能力市场', '把经过验证的 AI 能力模块化，连接家庭、硬件厂商、服务机构与开发者。'],
       community: ['Community', '长寿社会知识网络', '汇聚用户、家庭、专家、研究者、机构与产业伙伴。'],
       labs: ['Labs', '研究与试点', '探索记忆、身份、陪伴、无障碍交互与人机关系的下一代产品。'],
     },
-    ctaTitle: '一起构建长寿社会的 AI 基础设施',
-    ctaBody: '合作试点、产品共创、行业研究与能力接入。',
-    cta: '开始合作',
   },
   en: {
     nav: { ecosystem: 'Ecosystem', products: 'Products', memoir: 'Memoir', contact: 'Contact' },
-    heroEyebrow: 'AI FOR AGING',
-    heroTitle1: 'A longer life',
-    heroTitle2: 'without less life',
-    heroDesc: 'Deerlight builds AI products, skills, and infrastructure for a longevity society—so technology carries complexity while people keep agency, dignity, and connection.',
-    explore: 'Explore products',
-    aboutLead: 'We do not reduce older adults to people who need care. We design for people who are still learning, creating, connecting, and making decisions.',
-    aboutTitle: 'Let AI carry cognitive weight, so people can keep living their lives.',
-    aboutBody: 'From life stories and digital access to family collaboration and service networks, Deerlight embeds AI into everyday aging in a quieter, more trustworthy, and more explainable way.',
-    ecosystemTitle: 'A product ecosystem for a longevity society',
-    ecosystemDesc: 'Moving from a single product toward an operating layer, a skill marketplace, a community, and a research platform.',
-    cards: {
-      memoir: ['Deerlight Memoir', 'Voice-first life storytelling', 'Voice interviews, adaptive follow-ups, family co-creation, and AI-assisted writing help preserve a lifetime of stories.'],
+    heroTitle1: 'Technology that expands life,',
+    heroTitle2: 'not complexity',
+    heroDesc: 'Deerlight builds AI products, skills, and infrastructure for a longevity society—so technology carries cognitive weight while people keep agency, dignity, and connection.',
+    heroChip: 'Less cognitive load. More life.',
+    explore: 'Explore',
+    aboutLead: 'We craft AI systems that move with later life, not over it.',
+    hello: 'Say hello',
+    aboutCta: 'Explore ecosystem',
+    aboutTitle: 'We make AI products, skills, and infrastructure for a longer life. More importantly, we help people keep agency as technology becomes more complex.',
+    productTitle: 'Technology that expands life, not complexity.',
+    productIntro: 'Starting with memoir, Deerlight grows toward an operating layer, a skill marketplace, an intelligence network, and a research platform.',
+    workTitle: 'Build the AI infrastructure for longer lives with us',
+    workBody: 'Pilots, product co-creation, industry research, and capability integration.',
+    workCta: 'Start a conversation',
+    products: {
       silver: ['SilverOS', 'An AI operating layer for aging', 'Coordinate identity, memory, family, devices, safety, and agents across the full journey.'],
       skillhub: ['SkillHub', 'Installable intelligence for aging', 'Turn validated AI capabilities into modular skills for families, device makers, service providers, and developers.'],
       community: ['Community', 'The aging intelligence network', 'Connect older adults, families, experts, researchers, institutions, and industry partners.'],
       labs: ['Labs', 'Research and pilots', 'Explore memory, identity, companionship, accessibility, and human–AI relationships.'],
     },
-    ctaTitle: 'Build the AI infrastructure for longer lives with us',
-    ctaBody: 'Pilots, product co-creation, industry research, and capability integration.',
-    cta: 'Start a conversation',
   },
 } as const
 
@@ -159,67 +159,93 @@ const productContent: Record<ProductKey, { zh: any; en: any }> = {
   },
 }
 
-function LanguageToggle({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) {
-  return <div className="lang-toggle"><button className={lang === 'zh' ? 'active' : ''} onClick={() => setLang('zh')}>中</button><button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button></div>
+const featureVideos = {
+  silver: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_102608_5fa1187d-9ac6-44fb-82ab-54376200abc0.mp4',
+  skillhub: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260625_174131_395bc785-bb21-4e65-abf6-27c56f0764b6.mp4',
+  community: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358.mp4',
+  labs: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260711_090308_1dd0cea7-f9ba-4db4-8147-c7d746061c9e.mp4',
 }
 
-function Header({ lang, setLang, dark = false }: { lang: Lang; setLang: (lang: Lang) => void; dark?: boolean }) {
+function LanguageToggle({ lang, setLang, dark = false }: { lang: Lang; setLang: (lang: Lang) => void; dark?: boolean }) {
+  return <div className={`lang-toggle ${dark ? 'lang-dark' : ''}`}><button className={lang === 'zh' ? 'active' : ''} onClick={() => setLang('zh')}>中</button><button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button></div>
+}
+
+function HomeNav({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) {
+  const [open, setOpen] = useState(false)
   const t = copy[lang]
-  return <header className={`site-header ${dark ? 'dark' : ''}`}>
-    <a className="brand" href="/">Deerlight.</a>
-    <nav>
-      <a href="/#ecosystem">{t.nav.ecosystem}</a>
-      <a href="/#products">{t.nav.products}</a>
-      <a href="https://deerlight.cn">{t.nav.memoir}</a>
-      <a href="mailto:hello@deerlight.cn">{t.nav.contact}</a>
-    </nav>
-    <LanguageToggle lang={lang} setLang={setLang} />
-  </header>
+  return <>
+    <div className="floating-nav">
+      <a href="/" className="floating-brand">Deerlight.</a>
+      <button className={`menu-button ${open ? 'open' : ''}`} onClick={() => setOpen(!open)} aria-label="Menu"><i /><i /></button>
+      <div className={`floating-menu ${open ? 'show' : ''}`}>
+        <a href="#ecosystem">{t.nav.ecosystem}</a>
+        <a href="#products">{t.nav.products}</a>
+        <a href="https://deerlight.cn">{t.nav.memoir}</a>
+        <a href="mailto:hello@deerlight.cn">{t.nav.contact}</a>
+      </div>
+    </div>
+    <div className="home-language"><LanguageToggle lang={lang} setLang={setLang} /></div>
+  </>
+}
+
+function DetailHeader({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) {
+  const t = copy[lang]
+  return <header className="site-header dark"><a className="brand" href="/">Deerlight.</a><nav><a href="/#ecosystem">{t.nav.ecosystem}</a><a href="/#products">{t.nav.products}</a><a href="https://deerlight.cn">{t.nav.memoir}</a><a href="mailto:hello@deerlight.cn">{t.nav.contact}</a></nav><LanguageToggle lang={lang} setLang={setLang} dark /></header>
 }
 
 function Home({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) {
   const t = copy[lang]
-  const cards = [
-    { key: 'memoir', href: 'https://deerlight.cn', video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_102608_5fa1187d-9ac6-44fb-82ab-54376200abc0.mp4' },
-    { key: 'silver', href: '/silver-os.html', video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260625_174131_395bc785-bb21-4e65-abf6-27c56f0764b6.mp4' },
-    { key: 'skillhub', href: '/skillhub.html', video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358.mp4' },
-    { key: 'community', href: '/community.html', video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260711_090308_1dd0cea7-f9ba-4db4-8147-c7d746061c9e.mp4' },
-    { key: 'labs', href: '/labs.html', video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_102608_5fa1187d-9ac6-44fb-82ab-54376200abc0.mp4' },
-  ] as const
-  return <main>
-    <section className="hero" id="ecosystem">
-      <video autoPlay muted loop playsInline src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4" />
-      <div className="hero-overlay" />
-      <Header lang={lang} setLang={setLang} />
-      <div className="hero-content">
-        <p className="eyebrow">{t.heroEyebrow}</p>
+  const products = [
+    { key: 'silver' as const, href: '/silver-os.html', video: featureVideos.silver },
+    { key: 'skillhub' as const, href: '/skillhub.html', video: featureVideos.skillhub },
+    { key: 'community' as const, href: '/community.html', video: featureVideos.community },
+    { key: 'labs' as const, href: '/labs.html', video: featureVideos.labs },
+  ]
+  return <main className="home-page">
+    <section className="classic-hero" id="ecosystem">
+      <video autoPlay muted loop playsInline src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260711_090308_1dd0cea7-f9ba-4db4-8147-c7d746061c9e.mp4" />
+      <div className="classic-overlay" />
+      <HomeNav lang={lang} setLang={setLang} />
+      <div className="classic-hero-content">
         <h1>{t.heroTitle1}<br /><em>{t.heroTitle2}</em></h1>
-        <p className="hero-desc">{t.heroDesc}</p>
-        <a className="pill light" href="#products">{t.explore} <span>↘</span></a>
+        <p>{t.heroDesc}</p>
+        <div className="hero-chip"><span>{t.heroChip}</span><a href="#products">{t.explore}</a></div>
       </div>
     </section>
 
-    <section className="about cream">
-      <div className="narrow center"><p className="lead">{t.aboutLead}</p></div>
-      <div className="divider"><span /><i /><span /></div>
-      <div className="about-grid"><div className="mark">D<br /><small>AGING<br />AMPLIFIED</small></div><div><h2>{t.aboutTitle}</h2><p>{t.aboutBody}</p></div></div>
-    </section>
-
-    <section className="products-section" id="products">
-      <div className="section-heading"><p className="eyebrow">DEERLIGHT ECOSYSTEM</p><h2>{t.ecosystemTitle}</h2><p>{t.ecosystemDesc}</p></div>
-      <div className="product-grid">
-        {cards.map((card, index) => {
-          const [name, label, desc] = t.cards[card.key]
-          return <a className="product-card" key={card.key} href={card.href}>
-            <div className="product-media"><video autoPlay muted loop playsInline src={card.video} /></div>
-            <div className="product-meta"><span>0{index + 1}</span><span>↗</span></div>
-            <p className="micro">{label}</p><h3>{name}</h3><p>{desc}</p>
-          </a>
-        })}
+    <section className="classic-about">
+      <div className="about-top">
+        <p>{t.aboutLead}</p>
+        <div className="about-actions"><a className="round-action primary" href="mailto:hello@deerlight.cn"><b>✉</b>{t.hello}</a><a className="round-action muted" href="#products"><b>＋</b>{t.aboutCta}</a></div>
+      </div>
+      <div className="classic-divider"><span /><i /><span /></div>
+      <div className="classic-about-grid">
+        <div className="deer-mark"><strong>✣</strong><small>AGING<br />AMPLIFIED</small></div>
+        <h2>{t.aboutTitle}</h2>
       </div>
     </section>
 
-    <section className="closing"><p className="eyebrow">WORK WITH DEERLIGHT</p><h2>{t.ctaTitle}</h2><p>{t.ctaBody}</p><a className="pill light" href="mailto:hello@deerlight.cn">{t.cta} ↗</a></section>
+    <section className="classic-products" id="products">
+      <div className="products-layout">
+        <aside className="products-sidebar">
+          <div><p className="eyebrow">DEERLIGHT ECOSYSTEM</p><h2>{t.productTitle}</h2><p>{t.productIntro}</p></div>
+          <nav>{products.map((item) => <a key={item.key} href={`#card-${item.key}`}>{t.products[item.key][0]}</a>)}</nav>
+          <div className="partner-box"><p>{t.workBody}</p><a href="mailto:hello@deerlight.cn">{t.workCta} ↗</a></div>
+        </aside>
+        <div className="vertical-products">
+          {products.map((item, index) => {
+            const [name, label, desc] = t.products[item.key]
+            return <article className="vertical-card" id={`card-${item.key}`} key={item.key}>
+              <div className="vertical-card-head"><div><span className="mini-mark">✣</span><p>{label}</p><h3>{name}</h3></div><a href={item.href}>↗</a></div>
+              <div className="vertical-media"><video autoPlay muted loop playsInline src={item.video} /></div>
+              <div className="vertical-card-foot"><span>0{index + 1}</span><p>{desc}</p></div>
+            </article>
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section className="classic-closing"><p className="eyebrow">WORK WITH DEERLIGHT</p><h2>{t.workTitle}</h2><p>{t.workBody}</p><a href="mailto:hello@deerlight.cn">{t.workCta} ↗</a></section>
     <footer><span>© 2026 Deerlight</span><span>AI for Aging</span></footer>
   </main>
 }
@@ -227,15 +253,12 @@ function Home({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) 
 function ProductPage({ productKey, lang, setLang }: { productKey: ProductKey; lang: Lang; setLang: (lang: Lang) => void }) {
   const p = productContent[productKey][lang]
   return <main className={`detail detail-${productKey}`}>
-    <section className="detail-hero">
-      <Header lang={lang} setLang={setLang} dark />
-      <div className="detail-hero-inner"><p className="eyebrow">{p.eyebrow}</p><h1>{p.title}</h1><p>{p.subtitle}</p></div>
-    </section>
+    <section className="detail-hero"><DetailHeader lang={lang} setLang={setLang} /><div className="detail-hero-inner"><p className="eyebrow">{p.eyebrow}</p><h1>{p.title}</h1><p>{p.subtitle}</p></div></section>
     <section className="detail-intro"><p>{p.intro}</p></section>
     <section className="detail-sections">{p.sections.map(([title, body]: string[], i: number) => <article key={title}><span>0{i + 1}</span><h2>{title}</h2><p>{body}</p></article>)}</section>
     <section className="module-section"><div><p className="eyebrow">CAPABILITIES</p><h2>{lang === 'zh' ? '核心能力模块' : 'Core capability modules'}</h2></div><div className="module-grid">{p.modules.map((m: string) => <div key={m}>{m}</div>)}</div></section>
     <section className="architecture"><p className="eyebrow">HOW IT WORKS</p><h2>{lang === 'zh' ? '从入口到生态的完整链路' : 'From entry point to ecosystem'}</h2><div className="flow">{p.model.map((m: string, i: number) => <div key={m}><span>{i + 1}</span><strong>{m}</strong>{i < p.model.length - 1 && <b>→</b>}</div>)}</div></section>
-    <section className="closing"><h2>{lang === 'zh' ? '一起把概念变成真实场景' : 'Turn the concept into a real-world pilot'}</h2><a className="pill light" href="mailto:hello@deerlight.cn">{lang === 'zh' ? '联系 Deerlight' : 'Contact Deerlight'} ↗</a></section>
+    <section className="classic-closing"><h2>{lang === 'zh' ? '一起把概念变成真实场景' : 'Turn the concept into a real-world pilot'}</h2><a href="mailto:hello@deerlight.cn">{lang === 'zh' ? '联系 Deerlight' : 'Contact Deerlight'} ↗</a></section>
     <footer><a href="/">← Deerlight.</a><span>AI for Aging</span></footer>
   </main>
 }
