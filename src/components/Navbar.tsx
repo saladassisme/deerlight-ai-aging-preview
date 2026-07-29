@@ -31,6 +31,7 @@ const productLinks = [
   { label: 'SilverOS', href: '/silver-os.html' },
   { label: 'SkillHub', href: '/skillhub.html' },
   { label: 'Community', href: '/community.html' },
+  { label: 'Reports', href: '/reports.html' },
 ]
 
 export default function Navbar({ lang, setLang, light = false }: NavbarProps) {

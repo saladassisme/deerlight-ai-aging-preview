@@ -4,6 +4,7 @@ import AboutSection from '../components/AboutSection'
 import FeaturesSection from '../components/FeaturesSection'
 import Navbar from '../components/Navbar'
 import { SiteFooter } from '../components/ProductShell'
+import ReportsPreview from '../components/ReportsPreview'
 
 export default function HomePage({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) {
   return (
@@ -33,6 +34,7 @@ export default function HomePage({ lang, setLang }: { lang: Lang; setLang: (lang
 
       <AboutSection lang={lang} />
       <FeaturesSection />
+      <ReportsPreview lang={lang} />
 
       <section className="about-deerlight" id="about-deerlight">
         <p className="about-deerlight-label">Deerlight.</p>
