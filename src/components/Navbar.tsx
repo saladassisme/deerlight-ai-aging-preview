@@ -13,7 +13,7 @@ const labels = {
   zh: {
     about: '关于我们',
     contact: '联系方式',
-    intro: '我们的介绍',
+    intro: '品牌介绍',
     open: '打开菜单',
     close: '关闭菜单',
   },
@@ -27,11 +27,11 @@ const labels = {
 }
 
 const productLinks = [
-  { label: 'Memora', href: 'https://deerlight.cn', external: true },
-  { label: 'SilverOS', href: '/silver-os.html' },
-  { label: 'SkillHub', href: '/skillhub.html' },
-  { label: 'Community', href: '/community.html' },
-  { label: 'Reports', href: '/reports.html' },
+  { label: { zh: '小鹿回忆录', en: 'Memora' }, href: 'https://deerlight.cn', external: true },
+  { label: { zh: '银发智能系统', en: 'SilverOS' }, href: '/silver-os.html' },
+  { label: { zh: '技能中心', en: 'SkillHub' }, href: '/skillhub.html' },
+  { label: { zh: '共创社区', en: 'Community' }, href: '/community.html' },
+  { label: { zh: '洞察报告', en: 'Reports' }, href: '/reports.html' },
 ]
 
 export default function Navbar({ lang, setLang, light = false }: NavbarProps) {
@@ -69,15 +69,15 @@ export default function Navbar({ lang, setLang, light = false }: NavbarProps) {
         <BrandLockup compact />
       </a>
 
-      <nav className="desktop-nav" aria-label="Primary navigation">
+      <nav className="desktop-nav" aria-label={lang === 'zh' ? '主导航' : 'Primary navigation'}>
         {productLinks.map((item) => (
           <a
-            key={item.label}
+            key={item.href}
             href={item.href}
             target={item.external ? '_blank' : undefined}
             rel={item.external ? 'noreferrer' : undefined}
           >
-            {item.label}
+            {item.label[lang]}
           </a>
         ))}
         <div className="about-menu" ref={aboutRef}>
@@ -100,7 +100,7 @@ export default function Navbar({ lang, setLang, light = false }: NavbarProps) {
       </nav>
 
       <div className="nav-actions">
-        <div className="language-switch" aria-label="Language">
+        <div className="language-switch" aria-label={lang === 'zh' ? '语言切换' : 'Language'}>
           <button className={lang === 'zh' ? 'active' : ''} aria-pressed={lang === 'zh'} onClick={() => setLang('zh')}>中</button>
           <button className={lang === 'en' ? 'active' : ''} aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button>
         </div>
@@ -118,13 +118,13 @@ export default function Navbar({ lang, setLang, light = false }: NavbarProps) {
       <div className={`mobile-panel ${mobileOpen ? 'visible' : ''}`}>
         {productLinks.map((item) => (
           <a
-            key={item.label}
+            key={item.href}
             href={item.href}
             target={item.external ? '_blank' : undefined}
             rel={item.external ? 'noreferrer' : undefined}
             onClick={closeAll}
           >
-            {item.label}
+            {item.label[lang]}
           </a>
         ))}
         <span className="mobile-divider" />
