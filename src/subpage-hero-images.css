@@ -78,15 +78,4 @@
   .product-page .labs-hero {
     background-position: 62% center !important;
   }
-
-  .product-page .silver-hero,
-  .product-page .skillhub-hero,
-  .product-page .community-hero,
-  .product-page .reports-hero,
-  .product-page .about-hero,
-  .product-page .labs-hero {
-    background-image:
-      linear-gradient(90deg, rgba(14, 15, 13, 0.86) 0%, rgba(14, 15, 13, 0.62) 62%, rgba(14, 15, 13, 0.32) 100%),
-      var(--hero-photo) !important;
-  }
 }
