@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SilverOS Prototype</title>
+  <style>
+    :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f241b;background:#e9eee3}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 20% 10%,#fff 0,transparent 35%),linear-gradient(135deg,#dfe8d7,#f2eee5)}
+    button{font:inherit}.device{width:min(390px,100%);height:760px;padding:18px;border:10px solid #151713;border-radius:48px;background:#f7f6f1;box-shadow:0 30px 90px rgba(18,24,14,.28);overflow:hidden;position:relative}
+    .status{height:30px;display:flex;justify-content:space-between;align-items:center;padding:0 8px;font-size:12px;font-weight:700}.home{height:calc(100% - 30px);display:flex;flex-direction:column;gap:14px}.greeting{padding:18px 8px 6px}.greeting small{color:#68705f}.greeting h1{font-size:30px;line-height:1.08;margin:6px 0 0}.task{border:0;border-radius:22px;padding:18px;text-align:left;cursor:pointer;background:#fff;box-shadow:0 12px 34px rgba(25,31,20,.07);transition:.18s}.task:hover{transform:translateY(-2px)}.task strong{display:block;font-size:19px;margin-bottom:6px}.task span{font-size:13px;color:#67705f}.task.primary{background:#dff06e}.task-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.assistant{margin-top:auto;padding:14px;border-radius:22px;background:#171a15;color:#fff}.assistant p{margin:0 0 12px;color:rgba(255,255,255,.65);font-size:13px;line-height:1.5}.assistant button{width:100%;border:0;border-radius:15px;padding:14px;background:#fff;color:#171a15;font-weight:700;cursor:pointer}.sheet{position:absolute;inset:auto 12px 12px;min-height:260px;padding:22px;border-radius:28px;background:#fff;box-shadow:0 -20px 80px rgba(0,0,0,.22);transform:translateY(120%);transition:.28s ease}.sheet.open{transform:translateY(0)}.sheet h2{margin:0 0 8px;font-size:24px}.sheet p{margin:0 0 18px;color:#67705f;line-height:1.55}.steps{display:grid;gap:10px}.step{padding:12px 14px;border-radius:14px;background:#f1f3ec;font-size:14px}.step.active{background:#dff06e}.actions{display:flex;gap:10px;margin-top:18px}.actions button{flex:1;border:0;border-radius:14px;padding:12px;cursor:pointer}.actions .confirm{background:#171a15;color:#fff}.actions .cancel{background:#ece9e2}.toast{position:absolute;top:62px;left:50%;transform:translate(-50%,-20px);opacity:0;padding:10px 14px;border-radius:999px;background:#171a15;color:#fff;font-size:12px;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+  </style>
+</head>
+<body>
+  <main class="device" aria-label="SilverOS interactive prototype">
+    <div class="status"><span>09:41</span><span>SilverOS</span><span>86%</span></div>
+    <section class="home">
+      <header class="greeting"><small>星期四 · 上海</small><h1>下午好，今天想先做什么？</h1></header>
+      <button class="task primary" data-flow="doctor"><strong>准备下周复诊</strong><span>整理症状、安排时间，并提醒家人</span></button>
+      <div class="task-row">
+        <button class="task" data-flow="family"><strong>联系家人</strong><span>用语音发起通话</span></button>
+        <button class="task" data-flow="notice"><strong>查看通知</strong><span>只看重要消息</span></button>
+      </div>
+      <button class="task" data-flow="scam"><strong>检查可疑消息</strong><span>识别链接、催促与转账风险</span></button>
+      <div class="assistant"><p>也可以直接说出目标。系统会一次只问一个问题，并在付款、授权或健康场景停下来确认。</p><button id="voice">按住说话</button></div>
+    </section>
+    <div class="toast" id="toast">正在听你说…</div>
+    <section class="sheet" id="sheet">
+      <h2 id="sheetTitle">准备下周复诊</h2>
+      <p id="sheetLead">我会先确认时间，再整理就诊清单。每一步都可以返回。</p>
+      <div class="steps" id="steps"></div>
+      <div class="actions"><button class="cancel" id="cancel">返回</button><button class="confirm" id="confirm">继续</button></div>
+    </section>
+  </main>
+  <script>
+    const flows={
+      doctor:{title:'准备下周复诊',lead:'我会先确认时间，再整理就诊清单。每一步都可以返回。',steps:['确认医院与日期','整理症状和用药','加入日历并提醒家人']},
+      family:{title:'联系家人',lead:'请选择联系人。系统不会在后台持续监控或自动拨号。',steps:['选择可信联系人','确认通话方式','开始通话']},
+      notice:{title:'重要通知摘要',lead:'只显示需要你处理的内容，并解释每条通知来自哪里。',steps:['识别重要通知','用简单语言摘要','由你决定是否打开']},
+      scam:{title:'检查可疑消息',lead:'把消息内容粘贴进来，系统会说明风险信号，并建议官方核实方式。',steps:['识别链接与发件人','检查催促和付款要求','给出安全处理建议']}
+    };
+    const sheet=document.getElementById('sheet'),title=document.getElementById('sheetTitle'),lead=document.getElementById('sheetLead'),steps=document.getElementById('steps'),toast=document.getElementById('toast');let current='doctor',index=0;
+    function render(){const flow=flows[current];title.textContent=flow.title;lead.textContent=flow.lead;steps.innerHTML=flow.steps.map((s,i)=>`<div class="step ${i===index?'active':''}">${i+1}. ${s}</div>`).join('');document.getElementById('confirm').textContent=index===flow.steps.length-1?'完成':'继续'}
+    document.querySelectorAll('[data-flow]').forEach(btn=>btn.onclick=()=>{current=btn.dataset.flow;index=0;render();sheet.classList.add('open')});
+    document.getElementById('cancel').onclick=()=>sheet.classList.remove('open');
+    document.getElementById('confirm').onclick=()=>{const flow=flows[current];if(index<flow.steps.length-1){index++;render()}else{sheet.classList.remove('open');toast.textContent='任务已保存，可随时继续';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}};
+    document.getElementById('voice').onclick=()=>{toast.textContent='正在听你说…';toast.classList.add('show');setTimeout(()=>{toast.textContent='可以说：帮我安排下周三复诊';setTimeout(()=>toast.classList.remove('show'),1800)},900)};
+    render();
+  </script>
+</body>
+</html>
