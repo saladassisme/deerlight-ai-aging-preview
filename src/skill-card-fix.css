@@ -1,0 +1,139 @@
+.skillhub-page .skill-gallery > article,
+.skillhub-page .skill-gallery > article.featured,
+.skillhub-page .skill-gallery > article:hover,
+.skillhub-page .skill-gallery > article.featured:hover {
+  background: #fff !important;
+  background-image: none !important;
+}
+
+.skillhub-page .skill-gallery > article.featured {
+  border-color: rgba(122, 141, 19, 0.34);
+}
+
+.skillhub-page .skill-gallery > article.featured .verified {
+  color: #7a8d13;
+  font-weight: 700;
+}
+
+.skillhub-page .skill-gallery > article.featured .verified svg {
+  color: #95a817;
+  fill: #e5f27d;
+}
+
+.skillhub-page .skill-gallery > article.featured .skill-icon {
+  background: #171915;
+  color: #dff08e;
+}
+
+/* Wider shared content system for all product subpages. */
+.product-page .product-hero-copy,
+.product-page .section-title,
+.product-page .gallery-controls,
+.product-page .skill-gallery,
+.product-page .skill-delivery-grid,
+.product-page .publisher-heading,
+.product-page .publisher-steps,
+.product-page .delivery-path,
+.product-page .feature-grid,
+.product-page .audience-layout,
+.product-page .capability-grid,
+.product-page .usage-steps,
+.product-page .partner-photo-grid,
+.product-page .engagement-grid,
+.product-page .activity-grid,
+.product-page .people-grid,
+.product-page .method-track,
+.product-page .join-grid,
+.product-page .about-principle-grid,
+.product-page .about-system-grid,
+.product-page .silver-prototype-frame,
+.reports-page .product-hero-copy,
+.reports-page .reports-controls,
+.reports-page .reports-count,
+.reports-page .reports-gallery {
+  width: min(1380px, calc(100% - 64px));
+  max-width: none;
+}
+
+.skillhub-page .skill-gallery {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.skillhub-page .skill-gallery > article {
+  min-height: 340px;
+}
+
+@media (max-width: 1180px) {
+  .skillhub-page .skill-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .product-page .product-hero-copy,
+  .product-page .section-title,
+  .product-page .gallery-controls,
+  .product-page .skill-gallery,
+  .product-page .skill-delivery-grid,
+  .product-page .publisher-heading,
+  .product-page .publisher-steps,
+  .product-page .delivery-path,
+  .product-page .feature-grid,
+  .product-page .audience-layout,
+  .product-page .capability-grid,
+  .product-page .usage-steps,
+  .product-page .partner-photo-grid,
+  .product-page .engagement-grid,
+  .product-page .activity-grid,
+  .product-page .people-grid,
+  .product-page .method-track,
+  .product-page .join-grid,
+  .product-page .about-principle-grid,
+  .product-page .about-system-grid,
+  .product-page .silver-prototype-frame,
+  .reports-page .product-hero-copy,
+  .reports-page .reports-controls,
+  .reports-page .reports-count,
+  .reports-page .reports-gallery {
+    width: min(100% - 40px, 1380px);
+  }
+
+  .skillhub-page .skill-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .product-page .product-hero-copy,
+  .product-page .section-title,
+  .product-page .gallery-controls,
+  .product-page .skill-gallery,
+  .product-page .skill-delivery-grid,
+  .product-page .publisher-heading,
+  .product-page .publisher-steps,
+  .product-page .delivery-path,
+  .product-page .feature-grid,
+  .product-page .audience-layout,
+  .product-page .capability-grid,
+  .product-page .usage-steps,
+  .product-page .partner-photo-grid,
+  .product-page .engagement-grid,
+  .product-page .activity-grid,
+  .product-page .people-grid,
+  .product-page .method-track,
+  .product-page .join-grid,
+  .product-page .about-principle-grid,
+  .product-page .about-system-grid,
+  .product-page .silver-prototype-frame,
+  .reports-page .product-hero-copy,
+  .reports-page .reports-controls,
+  .reports-page .reports-count,
+  .reports-page .reports-gallery {
+    width: min(100% - 24px, 1380px);
+  }
+
+  .skillhub-page .skill-gallery {
+    grid-template-columns: 1fr;
+  }
+}
