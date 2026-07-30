@@ -5,6 +5,7 @@
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/silver-os.html", "destination": "/index.html" },
+    { "source": "/silver-os", "destination": "/index.html" },
     { "source": "/silveros", "destination": "/index.html" },
     { "source": "/skillhub.html", "destination": "/index.html" },
     { "source": "/skillhub", "destination": "/index.html" },
@@ -13,6 +14,9 @@
     { "source": "/community", "destination": "/index.html" },
     { "source": "/reports.html", "destination": "/index.html" },
     { "source": "/reports", "destination": "/index.html" },
-    { "source": "/labs.html", "destination": "/index.html" }
+    { "source": "/about.html", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/labs.html", "destination": "/index.html" },
+    { "source": "/labs", "destination": "/index.html" }
   ]
 }
