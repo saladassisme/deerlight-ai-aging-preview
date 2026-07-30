@@ -8,6 +8,7 @@
     { "source": "/silveros", "destination": "/index.html" },
     { "source": "/skillhub.html", "destination": "/index.html" },
     { "source": "/skillhub", "destination": "/index.html" },
+    { "source": "/skills/(.*)", "destination": "/index.html" },
     { "source": "/community.html", "destination": "/index.html" },
     { "source": "/community", "destination": "/index.html" },
     { "source": "/reports.html", "destination": "/index.html" },
