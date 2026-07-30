@@ -6,6 +6,8 @@ import { useEffect, useMemo, useState } from 'react'
 import type { Lang, SkillCategory, SkillItem } from '../data'
 import { skillCategories, skills, tx } from '../data'
 import { ContactBand, ProductHero, SectionTitle, SiteFooter } from '../components/ProductShell'
+import LiveSkillDemo from '../components/LiveSkillDemo'
+import { getLiveSkillConfig } from '../skillDemos'
 
 const copy = {
   zh: {
@@ -243,7 +245,7 @@ export default function SkillHubPage({ lang, setLang }: { lang: Lang; setLang: (
     <ContactBand lang={lang} title={lang === 'zh' ? '把真实能力带进技能中心' : 'Bring a real capability to SkillHub'} />
     <SiteFooter lang={lang} />
 
-    {selected && <div className="market-modal-backdrop" onClick={() => setSelected(null)}><section className="market-modal" onClick={(event) => event.stopPropagation()}>
+    {selected && <div className="market-modal-backdrop" onClick={() => setSelected(null)}><section className={`market-modal ${getLiveSkillConfig(selected.id) ? 'market-modal-live' : ''}`} onClick={(event) => event.stopPropagation()}>
       <button className="modal-close" onClick={() => setSelected(null)} aria-label={t.close}><X /></button>
       <div className="modal-header"><span className="modal-icon">{(() => { const Icon = categoryIcons[selected.category]; return <Icon /> })()}</span><div><h2>{tx(selected.name, lang)}</h2><p>{tx(selected.description, lang)}</p></div></div>
       <div className="skill-identity-row">
@@ -251,7 +253,7 @@ export default function SkillHubPage({ lang, setLang }: { lang: Lang; setLang: (
         <div className="system-code-block"><small>{t.worksOn}</small><div><code>SilverOS</code><code>Smart Hardware</code><code>CLI</code><code>VS Code</code></div></div>
       </div>
       <div className="modal-capabilities"><h3>{t.capabilities}</h3><ul>{getDetail(selected, lang).bullets[lang].map((item) => <li key={item}>{item}</li>)}</ul></div>
-      <ConversationPreview skill={selected} lang={lang} />
+      {getLiveSkillConfig(selected.id) ? <LiveSkillDemo skill={selected} lang={lang} /> : <ConversationPreview skill={selected} lang={lang} />}
       <footer><div className="modal-price"><small>{t.price}</small><strong>{tx(selected.price, lang)}</strong></div><button onClick={() => addSkill(selected)}>{added.includes(selected.id) ? t.added : t.add}<ChevronRight size={17} /></button></footer>
     </section></div>}
 
