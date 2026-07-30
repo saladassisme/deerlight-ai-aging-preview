@@ -1,0 +1,81 @@
+/* Photo-led hero backgrounds. All subpages keep the same layout and overlay treatment. */
+.product-page .silver-hero,
+.product-page .skillhub-hero,
+.product-page .community-hero,
+.product-page .reports-hero,
+.product-page .about-hero,
+.product-page .labs-hero {
+  background-color: #20211e !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.product-page .silver-hero {
+  background-image:
+    linear-gradient(90deg, rgba(14, 15, 13, 0.82) 0%, rgba(14, 15, 13, 0.56) 48%, rgba(14, 15, 13, 0.22) 100%),
+    linear-gradient(0deg, rgba(12, 13, 11, 0.28), rgba(12, 13, 11, 0.04)),
+    url('/images/silveros-android-ai-native-hero-v2.webp') !important;
+  background-position: center 42% !important;
+}
+
+.product-page .skillhub-hero {
+  background-image:
+    linear-gradient(90deg, rgba(14, 15, 13, 0.84) 0%, rgba(14, 15, 13, 0.55) 46%, rgba(14, 15, 13, 0.2) 100%),
+    linear-gradient(0deg, rgba(12, 13, 11, 0.3), rgba(12, 13, 11, 0.02)),
+    url('https://images.unsplash.com/photo-1776176065418-8d33aeca47e4?auto=format&fit=crop&fm=jpg&q=88&w=2200') !important;
+  background-position: center 45% !important;
+}
+
+.product-page .community-hero {
+  background-image:
+    linear-gradient(90deg, rgba(14, 15, 13, 0.82) 0%, rgba(14, 15, 13, 0.5) 45%, rgba(14, 15, 13, 0.18) 100%),
+    linear-gradient(0deg, rgba(12, 13, 11, 0.34), rgba(12, 13, 11, 0.02)),
+    url('https://images.unsplash.com/photo-1755053757569-1559444c1918?auto=format&fit=crop&fm=jpg&q=88&w=2200') !important;
+  background-position: center 48% !important;
+}
+
+.product-page .reports-hero {
+  background-image:
+    linear-gradient(90deg, rgba(14, 15, 13, 0.84) 0%, rgba(14, 15, 13, 0.56) 48%, rgba(14, 15, 13, 0.2) 100%),
+    linear-gradient(0deg, rgba(12, 13, 11, 0.3), rgba(12, 13, 11, 0.02)),
+    url('https://images.unsplash.com/photo-1763994684995-7ae6c49b7212?auto=format&fit=crop&fm=jpg&q=88&w=2200') !important;
+  background-position: center 52% !important;
+}
+
+.product-page .about-hero {
+  background-image:
+    linear-gradient(90deg, rgba(14, 15, 13, 0.82) 0%, rgba(14, 15, 13, 0.52) 48%, rgba(14, 15, 13, 0.18) 100%),
+    linear-gradient(0deg, rgba(12, 13, 11, 0.32), rgba(12, 13, 11, 0.02)),
+    url('https://images.unsplash.com/photo-1742750278243-6596976af769?auto=format&fit=crop&fm=jpg&q=88&w=2200') !important;
+  background-position: center 44% !important;
+}
+
+.product-page .labs-hero {
+  background-image:
+    linear-gradient(90deg, rgba(14, 15, 13, 0.84) 0%, rgba(14, 15, 13, 0.54) 48%, rgba(14, 15, 13, 0.2) 100%),
+    linear-gradient(0deg, rgba(12, 13, 11, 0.32), rgba(12, 13, 11, 0.02)),
+    url('https://images.unsplash.com/photo-1781246013729-58af33b0aed9?auto=format&fit=crop&fm=jpg&q=88&w=2200') !important;
+  background-position: center 46% !important;
+}
+
+/* Preserve the common grid, but soften it so the image remains visible. */
+.product-page .silver-hero::after,
+.product-page .skillhub-hero::after,
+.product-page .community-hero::after,
+.product-page .reports-hero::after,
+.product-page .about-hero::after,
+.product-page .labs-hero::after {
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+}
+
+@media (max-width: 760px) {
+  .product-page .silver-hero,
+  .product-page .skillhub-hero,
+  .product-page .community-hero,
+  .product-page .reports-hero,
+  .product-page .about-hero,
+  .product-page .labs-hero {
+    background-position: 62% center !important;
+  }
+}

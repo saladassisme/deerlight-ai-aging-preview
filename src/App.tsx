@@ -11,6 +11,7 @@ import './skill-pages.css'
 import './skill-marketplace.css'
 import './unified-subpages.css'
 import './skill-card-fix.css'
+import './subpage-hero-images.css'
 
 const skillIconByTitle: Record<string, string> = {
   '反诈消息检查': '盾', 'Scam Message Check': '盾',
