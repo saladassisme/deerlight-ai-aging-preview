@@ -231,7 +231,7 @@ export default function SkillHubPage({ lang, setLang }: { lang: Lang; setLang: (
           <div className="skill-card-top"><span className="skill-icon"><Icon size={21} /></span><span className="verified">{featuredIds.has(skill.id) && <BadgeCheck size={15} />}{featuredIds.has(skill.id) ? t.featured : (lang === 'zh' ? categoryLabel?.zh : categoryLabel?.en)}</span></div>
           <h3>{tx(skill.name, lang)}</h3><p>{tx(skill.description, lang)}</p>
           <div className="skill-provider"><span>{t.creator} · {providerNames[skill.provider]?.[lang] ?? skill.provider}</span><strong>{tx(skill.price, lang)}</strong></div>
-          <button className="skill-card-action" onClick={(event) => { event.stopPropagation(); isAdded ? setSelected(skill) : addSkill(skill) }}>{isAdded ? <><Check size={16} />{t.added}</> : <>{t.add}<ChevronRight size={16} /></>}</button>
+          <button className="skill-card-action" onClick={(event) => { event.stopPropagation(); setSelected(skill) }}>{isAdded ? <><Check size={16} />{t.added}</> : <>{t.add}<ChevronRight size={16} /></>}</button>
         </article>
       })}</div> : <div className="empty-gallery"><Sparkles size={24} /><p>{t.noResult}</p></div>}
     </section>
