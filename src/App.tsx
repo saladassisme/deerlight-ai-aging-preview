@@ -5,7 +5,9 @@ import HomePage from './pages/HomePage'
 import LabsPage from './pages/LabsPage'
 import ReportsPage from './pages/ReportsPage'
 import SilverOSPage from './pages/SilverOSPage'
+import SkillDetailPage from './pages/SkillDetailPage'
 import SkillHubPage from './pages/SkillHubPage'
+import './skill-pages.css'
 
 export default function App() {
   const [lang, setLangState] = useState<Lang>(() => {
@@ -23,6 +25,9 @@ export default function App() {
   }, [lang])
 
   const path = window.location.pathname.toLowerCase()
+  if (path.includes('/skills/scam-check')) return <SkillDetailPage lang={lang} setLang={setLang} slug="scam-check" />
+  if (path.includes('/skills/visit-prep')) return <SkillDetailPage lang={lang} setLang={setLang} slug="visit-prep" />
+  if (path.includes('/skills/photo-memory')) return <SkillDetailPage lang={lang} setLang={setLang} slug="photo-memory" />
   if (path.includes('silver-os') || path.includes('silveros')) return <SilverOSPage lang={lang} setLang={setLang} />
   if (path.includes('skillhub')) return <SkillHubPage lang={lang} setLang={setLang} />
   if (path.includes('community')) return <CommunityPage lang={lang} setLang={setLang} />
