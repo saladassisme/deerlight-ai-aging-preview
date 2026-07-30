@@ -157,8 +157,8 @@
   max-width: 720px !important;
   margin: 24px 0 0 !important;
   font-size: clamp(17px, 1.7vw, 22px) !important;
-  line-height: 1.55 !important;
-  letter-spacing: -0.015em !important;
+  line-height: 1.7 !important;
+  letter-spacing: -0.01em !important;
   color: rgba(255, 255, 255, 0.72) !important;
 }
 
@@ -169,7 +169,15 @@
   pointer-events: none;
 }
 
-/* Four cards on wide screens for both marketplaces. */
+/* Skill filters and cards need a clear visual pause. */
+.skillhub-page .gallery-controls {
+  margin-bottom: 34px !important;
+}
+
+.skillhub-page .category-filter {
+  row-gap: 10px;
+}
+
 .skillhub-page .skill-gallery,
 .reports-page .reports-gallery {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
@@ -178,6 +186,72 @@
 
 .skillhub-page .skill-gallery > article {
   min-height: 340px;
+}
+
+/* Each skill receives a content-specific compact symbol, not a repeated category icon. */
+.skillhub-page .skill-icon[data-symbol] {
+  position: relative;
+  overflow: hidden;
+}
+
+.skillhub-page .skill-icon[data-symbol] svg {
+  opacity: 0;
+}
+
+.skillhub-page .skill-icon[data-symbol]::after {
+  content: attr(data-symbol);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+
+/* Chinese typography: more breathing room for dense product copy. */
+html[lang='zh-CN'] .product-page p,
+html[lang='zh-CN'] .product-page li,
+html[lang='zh-CN'] .product-page button,
+html[lang='zh-CN'] .product-page input,
+html[lang='zh-CN'] .product-page textarea {
+  line-height: 1.75;
+}
+
+html[lang='zh-CN'] .product-page .section-title p,
+html[lang='zh-CN'] .skillhub-page .skill-gallery > article > p,
+html[lang='zh-CN'] .reports-page .report-card p,
+html[lang='zh-CN'] .product-page .publisher-steps p,
+html[lang='zh-CN'] .product-page .skill-delivery-grid p {
+  line-height: 1.82 !important;
+}
+
+html[lang='zh-CN'] .skillhub-page .skill-gallery h3,
+html[lang='zh-CN'] .reports-page .report-card h2 {
+  line-height: 1.28 !important;
+}
+
+/* Scroll reveal used across every subpage. */
+.product-page .scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 720ms cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms),
+    transform 820ms cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.product-page .scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.product-page .product-hero-copy.scroll-reveal,
+.product-page .product-hero.scroll-reveal,
+.product-page .main-nav.scroll-reveal {
+  opacity: 1;
+  transform: none;
 }
 
 .reports-page .report-card-featured {
@@ -217,6 +291,10 @@
     --subpage-gutter: 20px;
   }
 
+  .skillhub-page .gallery-controls {
+    margin-bottom: 28px !important;
+  }
+
   .skillhub-page .skill-gallery,
   .reports-page .reports-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -252,8 +330,20 @@
     font-size: clamp(48px, 16vw, 64px) !important;
   }
 
+  .skillhub-page .gallery-controls {
+    margin-bottom: 24px !important;
+  }
+
   .skillhub-page .skill-gallery,
   .reports-page .reports-gallery {
     grid-template-columns: 1fr !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-page .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
