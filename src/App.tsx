@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Lang } from './data'
+import AboutPage from './pages/AboutPage'
 import CommunityPage from './pages/CommunityPage'
 import HomePage from './pages/HomePage'
 import LabsPage from './pages/LabsPage'
@@ -8,6 +9,7 @@ import SilverOSPage from './pages/SilverOSPage'
 import SkillHubPage from './pages/SkillHubPage'
 import './skill-pages.css'
 import './skill-marketplace.css'
+import './unified-subpages.css'
 
 export default function App() {
   const [lang, setLangState] = useState<Lang>(() => {
@@ -29,6 +31,7 @@ export default function App() {
   if (path.includes('skillhub') || path.includes('/skills/')) return <SkillHubPage lang={lang} setLang={setLang} />
   if (path.includes('community')) return <CommunityPage lang={lang} setLang={setLang} />
   if (path.includes('reports')) return <ReportsPage lang={lang} setLang={setLang} />
+  if (path.includes('about')) return <AboutPage lang={lang} setLang={setLang} />
   if (path.includes('labs')) return <LabsPage lang={lang} setLang={setLang} />
   return <HomePage lang={lang} setLang={setLang} />
 }

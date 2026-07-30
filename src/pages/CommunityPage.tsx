@@ -4,8 +4,7 @@ import {
 } from 'lucide-react'
 import type { Lang } from '../data'
 import { media } from '../data'
-import Navbar from '../components/Navbar'
-import { ContactBand, SectionTitle, SiteFooter } from '../components/ProductShell'
+import { ContactBand, ProductHero, SectionTitle, SiteFooter } from '../components/ProductShell'
 
 const copy = {
   zh: {
@@ -56,7 +55,7 @@ const methodIcons = [Search, MessageSquareText, Sparkles, CalendarDays, Handshak
 export default function CommunityPage({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) {
   const t = copy[lang]
   return <main className="product-page community-page">
-    <section className="community-hero"><Navbar lang={lang} setLang={setLang} light /><div className="community-hero-collage" aria-hidden="true"><img src={media.communitySquare} alt="" /><img src={media.conversation} alt="" /></div><div className="product-hero-copy"><h1>{t.heroTitle}</h1><p>{t.heroStatement}</p></div></section>
+    <ProductHero lang={lang} setLang={setLang} title={t.heroTitle} statement={t.heroStatement} background={media.communitySquare} className="community-hero unified-subpage-hero" />
     <section className="community-intro"><p>{t.intro}</p><ArrowDownRight size={42} strokeWidth={1.3} /></section>
     <section className="community-principle"><p>{t.principle}</p></section>
     <section className="activity-section"><SectionTitle title={t.activitiesTitle} lead={t.activitiesLead} /><div className="activity-grid">{t.activities.map(([title, body], index) => <article key={title} className={`activity-card activity-${index + 1}`}><img src={activityImages[index]} alt="" loading="lazy" /><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></section>

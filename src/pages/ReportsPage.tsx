@@ -1,8 +1,7 @@
 import { Search } from 'lucide-react'
 import { useMemo, useState } from 'react'
-import Navbar from '../components/Navbar'
 import ReportCard from '../components/ReportCard'
-import { SiteFooter } from '../components/ProductShell'
+import { ProductHero, SiteFooter } from '../components/ProductShell'
 import type { Lang } from '../data'
 import { tx } from '../data'
 import type { ReportCategory } from '../reportData'
@@ -22,8 +21,8 @@ export default function ReportsPage({ lang, setLang }: { lang: Lang; setLang: (l
     return reports.filter((report) => (category === 'all' || report.category === category) && (!normalized || tx(report.title, lang).toLowerCase().includes(normalized) || tx(report.summary, lang).toLowerCase().includes(normalized) || report.source.toLowerCase().includes(normalized)))
   }, [category, lang, query])
 
-  return <main className="reports-page">
-    <section className="reports-hero"><Navbar lang={lang} setLang={setLang} light /><div><h1>{t.title}</h1><p>{t.statement}</p></div></section>
+  return <main className="product-page reports-page">
+    <ProductHero lang={lang} setLang={setLang} title={t.title} statement={t.statement} className="reports-hero unified-subpage-hero" />
     <section className="reports-intro"><p>{t.lead}</p></section>
     <section className="reports-gallery-section">
       <div className="reports-controls">
