@@ -1,0 +1,40 @@
+.market-modal-live{width:min(1180px,100%)}
+.live-skill-demo{display:grid;grid-template-columns:.82fr 1.18fr;gap:14px;margin-top:2px}
+.live-skill-input-panel,.live-skill-result-panel{min-height:520px;border:1px solid rgba(30,28,24,.1);border-radius:22px;overflow:hidden}
+.live-skill-input-panel{padding:22px;background:#fbfaf7}
+.live-skill-panel-heading{margin-bottom:18px;display:flex;flex-direction:column;gap:5px}
+.live-skill-panel-heading span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(30,28,24,.42)}
+.live-skill-panel-heading strong{font-size:15px;line-height:1.55;font-weight:600}
+.live-skill-input-panel label{display:flex;flex-direction:column;gap:8px}
+.live-skill-input-panel label>span{font-size:12px;font-weight:600}
+.live-skill-input-panel textarea{width:100%;min-height:138px;padding:14px 15px;border:1px solid rgba(30,28,24,.13);border-radius:14px;background:#fff;outline:none;resize:vertical;font:inherit;font-size:14px;line-height:1.75;color:#1e1c18}
+.live-skill-input-panel textarea:focus{border-color:#171915;box-shadow:0 0 0 3px rgba(23,25,21,.08)}
+.live-skill-examples{margin-top:18px;display:grid;gap:8px}
+.live-skill-examples small{margin-bottom:1px;font-size:10px;letter-spacing:.08em;color:rgba(30,28,24,.42)}
+.live-skill-examples button{padding:11px 12px;display:grid;grid-template-columns:28px 1fr;gap:9px;align-items:start;border:1px solid rgba(30,28,24,.1);border-radius:12px;background:#fff;text-align:left;cursor:pointer;transition:.18s ease}
+.live-skill-examples button:hover{border-color:#171915;background:#eef6b7;transform:translateY(-1px)}
+.live-skill-examples button span{font-size:10px;line-height:1.65;color:rgba(30,28,24,.38)}
+.live-skill-examples button p{margin:0;display:-webkit-box;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:12px;line-height:1.65;color:rgba(30,28,24,.68)}
+.run-live-skill{width:100%;margin-top:16px;padding:13px 15px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:13px;background:#171915;color:#fff;font-weight:650;cursor:pointer}
+.run-live-skill:disabled{opacity:.68;cursor:wait}
+.live-skill-error{margin:12px 0 0;color:#a23b2b;font-size:12px}
+.live-skill-result-panel{background:#171915;color:#fff}
+.live-result-empty,.live-result-loading{min-height:468px;padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:rgba(255,255,255,.55)}
+.live-result-empty h3,.live-result-loading h3{margin:16px 0 8px;font-size:22px;font-weight:500;color:#fff}
+.live-result-empty p,.live-result-loading p{max-width:430px;margin:0;font-size:13px;line-height:1.75}
+.live-skill-result{min-height:468px;padding:26px;background:#f4f1eb;color:#1e1c18}
+.live-skill-result.risk-high{background:#fff0ec}
+.live-skill-result.risk-medium{background:#fff7df}
+.live-result-title{display:flex;gap:12px;align-items:flex-start}
+.live-result-title>svg{margin-top:4px;flex:0 0 auto}
+.live-result-title small{display:block;margin-bottom:4px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(30,28,24,.42)}
+.live-result-title h3{margin:0;font-size:28px;line-height:1.18;font-weight:550;letter-spacing:-.025em}
+.live-result-summary{margin:16px 0 20px;font-size:14px;line-height:1.8;color:rgba(30,28,24,.68)}
+.live-result-sections{display:grid;gap:10px}
+.live-result-sections section{padding:15px 16px;border:1px solid rgba(30,28,24,.09);border-radius:14px;background:rgba(255,255,255,.72)}
+.live-result-sections h4{margin:0 0 8px;font-size:12px;font-weight:700}
+.live-result-sections ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.live-result-sections li{font-size:13px;line-height:1.72;color:rgba(30,28,24,.72)}
+.live-result-note{margin:14px 0 0;padding-top:14px;border-top:1px solid rgba(30,28,24,.1);font-size:11px;line-height:1.7;color:rgba(30,28,24,.52)}
+.spin{animation:live-skill-spin .9s linear infinite}@keyframes live-skill-spin{to{transform:rotate(360deg)}}
+@media(max-width:860px){.live-skill-demo{grid-template-columns:1fr}.live-skill-input-panel,.live-skill-result-panel{min-height:0}.live-result-empty,.live-result-loading,.live-skill-result{min-height:360px}}
