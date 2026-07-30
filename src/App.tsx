@@ -7,6 +7,7 @@ import ReportsPage from './pages/ReportsPage'
 import SilverOSPage from './pages/SilverOSPage'
 import SkillDetailPage from './pages/SkillDetailPage'
 import SkillHubPage from './pages/SkillHubPage'
+import './skill-pages.css'
 
 export default function App() {
   const [lang, setLangState] = useState<Lang>(() => {
