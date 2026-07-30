@@ -9,6 +9,7 @@ import SilverOSPage from './pages/SilverOSPage'
 import SkillHubPage from './pages/SkillHubPage'
 import './skill-pages.css'
 import './skill-marketplace.css'
+import './unified-subpages.css'
 
 export default function App() {
   const [lang, setLangState] = useState<Lang>(() => {
