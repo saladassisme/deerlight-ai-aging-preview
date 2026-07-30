@@ -25,7 +25,12 @@
   color: #dff08e;
 }
 
-/* Wider shared content system for all product subpages. */
+/* One shared layout width across every subpage. */
+.product-page {
+  --subpage-width: 1380px;
+  --subpage-gutter: 32px;
+}
+
 .product-page .product-hero-copy,
 .product-page .section-title,
 .product-page .gallery-controls,
@@ -34,6 +39,8 @@
 .product-page .publisher-heading,
 .product-page .publisher-steps,
 .product-page .delivery-path,
+.product-page .app-boundary,
+.product-page .architecture-stack,
 .product-page .feature-grid,
 .product-page .audience-layout,
 .product-page .capability-grid,
@@ -44,19 +51,128 @@
 .product-page .people-grid,
 .product-page .method-track,
 .product-page .join-grid,
+.product-page .creator-heading,
+.product-page .creator-steps,
+.product-page .skill-format-heading,
+.product-page .skill-format-grid,
+.product-page .pricing-grid,
 .product-page .about-principle-grid,
 .product-page .about-system-grid,
 .product-page .silver-prototype-frame,
-.reports-page .product-hero-copy,
-.reports-page .reports-controls,
-.reports-page .reports-count,
-.reports-page .reports-gallery {
-  width: min(1380px, calc(100% - 64px));
+.product-page .reports-controls,
+.product-page .reports-count,
+.product-page .reports-gallery,
+.product-page .reports-empty,
+.product-page .labs-content > div {
+  width: min(var(--subpage-width), calc(100% - (var(--subpage-gutter) * 2)));
   max-width: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.skillhub-page .skill-gallery {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.product-page .statement-section > p,
+.product-page .community-intro > p,
+.product-page .community-intro > svg,
+.product-page .community-principle > p,
+.product-page .reports-intro > p {
+  width: min(var(--subpage-width), calc(100% - (var(--subpage-gutter) * 2)));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Every subpage uses the exact same hero system. */
+.product-page .product-hero,
+.product-page .silver-hero,
+.product-page .skillhub-hero,
+.product-page .community-hero,
+.product-page .reports-hero,
+.product-page .about-hero,
+.product-page .labs-hero {
+  position: relative;
+  height: 620px !important;
+  min-height: 620px !important;
+  max-height: 620px !important;
+  overflow: hidden;
+  color: #fff;
+  background-color: #191a17 !important;
+  background-image:
+    radial-gradient(circle at 82% 20%, rgba(122, 141, 19, 0.2), transparent 28%),
+    radial-gradient(circle at 18% 92%, rgba(229, 122, 72, 0.18), transparent 34%),
+    linear-gradient(135deg, #242621, #171915) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.product-page .product-hero::after,
+.product-page .silver-hero::after,
+.product-page .skillhub-hero::after,
+.product-page .community-hero::after,
+.product-page .reports-hero::after,
+.product-page .about-hero::after,
+.product-page .labs-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none;
+}
+
+.product-page .product-hero .main-nav {
+  z-index: 100;
+}
+
+.product-page .product-hero-copy,
+.product-page .reports-hero > div:last-child {
+  position: relative;
+  z-index: 4;
+  width: min(var(--subpage-width), calc(100% - (var(--subpage-gutter) * 2))) !important;
+  height: 620px !important;
+  min-height: 620px !important;
+  margin: 0 auto !important;
+  padding: 152px 0 62px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+  pointer-events: none;
+}
+
+.product-page .product-hero-copy h1,
+.product-page .reports-hero h1 {
+  max-width: 1060px;
+  margin: 0 !important;
+  font-size: clamp(64px, 8vw, 112px) !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.072em !important;
+  font-weight: 500 !important;
+}
+
+.product-page .product-hero-copy p,
+.product-page .reports-hero p {
+  max-width: 720px !important;
+  margin: 24px 0 0 !important;
+  font-size: clamp(17px, 1.7vw, 22px) !important;
+  line-height: 1.55 !important;
+  letter-spacing: -0.015em !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.skillhub-orbit,
+.community-hero-collage,
+.product-hero-visual {
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Four cards on wide screens for both marketplaces. */
+.skillhub-page .skill-gallery,
+.reports-page .reports-gallery {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   gap: 16px;
 }
 
@@ -64,76 +180,80 @@
   min-height: 340px;
 }
 
-@media (max-width: 1180px) {
-  .skillhub-page .skill-gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.reports-page .report-card-featured {
+  grid-column: span 1 !important;
+  display: flex !important;
+  grid-template-columns: none !important;
+}
+
+.reports-page .report-card-featured .report-card-image {
+  min-height: 0 !important;
+  aspect-ratio: 4 / 3 !important;
+}
+
+.reports-page .report-card-featured .report-card-body {
+  padding: 22px !important;
+}
+
+.reports-page .report-card-featured h2,
+.reports-page .report-card h2 {
+  margin: 38px 0 14px !important;
+  font-size: clamp(22px, 1.9vw, 29px) !important;
+}
+
+.reports-page .report-card-featured p {
+  font-size: 14px !important;
+}
+
+@media (max-width: 1220px) {
+  .skillhub-page .skill-gallery,
+  .reports-page .reports-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
 
 @media (max-width: 900px) {
-  .product-page .product-hero-copy,
-  .product-page .section-title,
-  .product-page .gallery-controls,
-  .product-page .skill-gallery,
-  .product-page .skill-delivery-grid,
-  .product-page .publisher-heading,
-  .product-page .publisher-steps,
-  .product-page .delivery-path,
-  .product-page .feature-grid,
-  .product-page .audience-layout,
-  .product-page .capability-grid,
-  .product-page .usage-steps,
-  .product-page .partner-photo-grid,
-  .product-page .engagement-grid,
-  .product-page .activity-grid,
-  .product-page .people-grid,
-  .product-page .method-track,
-  .product-page .join-grid,
-  .product-page .about-principle-grid,
-  .product-page .about-system-grid,
-  .product-page .silver-prototype-frame,
-  .reports-page .product-hero-copy,
-  .reports-page .reports-controls,
-  .reports-page .reports-count,
-  .reports-page .reports-gallery {
-    width: min(100% - 40px, 1380px);
+  .product-page {
+    --subpage-gutter: 20px;
   }
 
-  .skillhub-page .skill-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .skillhub-page .skill-gallery,
+  .reports-page .reports-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
 @media (max-width: 620px) {
-  .product-page .product-hero-copy,
-  .product-page .section-title,
-  .product-page .gallery-controls,
-  .product-page .skill-gallery,
-  .product-page .skill-delivery-grid,
-  .product-page .publisher-heading,
-  .product-page .publisher-steps,
-  .product-page .delivery-path,
-  .product-page .feature-grid,
-  .product-page .audience-layout,
-  .product-page .capability-grid,
-  .product-page .usage-steps,
-  .product-page .partner-photo-grid,
-  .product-page .engagement-grid,
-  .product-page .activity-grid,
-  .product-page .people-grid,
-  .product-page .method-track,
-  .product-page .join-grid,
-  .product-page .about-principle-grid,
-  .product-page .about-system-grid,
-  .product-page .silver-prototype-frame,
-  .reports-page .product-hero-copy,
-  .reports-page .reports-controls,
-  .reports-page .reports-count,
-  .reports-page .reports-gallery {
-    width: min(100% - 24px, 1380px);
+  .product-page {
+    --subpage-gutter: 12px;
   }
 
-  .skillhub-page .skill-gallery {
-    grid-template-columns: 1fr;
+  .product-page .product-hero,
+  .product-page .silver-hero,
+  .product-page .skillhub-hero,
+  .product-page .community-hero,
+  .product-page .reports-hero,
+  .product-page .about-hero,
+  .product-page .labs-hero {
+    height: 540px !important;
+    min-height: 540px !important;
+    max-height: 540px !important;
+  }
+
+  .product-page .product-hero-copy,
+  .product-page .reports-hero > div:last-child {
+    height: 540px !important;
+    min-height: 540px !important;
+    padding: 126px 0 44px !important;
+  }
+
+  .product-page .product-hero-copy h1,
+  .product-page .reports-hero h1 {
+    font-size: clamp(48px, 16vw, 64px) !important;
+  }
+
+  .skillhub-page .skill-gallery,
+  .reports-page .reports-gallery {
+    grid-template-columns: 1fr !important;
   }
 }
