@@ -15,40 +15,18 @@ export default function HomePage({ lang, setLang }: { lang: Lang; setLang: (lang
         <Navbar lang={lang} setLang={setLang} />
         <div className="home-hero-copy">
           <h1>
-            {lang === 'zh' ? (
-              <>
-                让未来，
-                <br />
-                对每个人都<em className="hero-highlight-zh">好用</em>。
-              </>
-            ) : (
-              <>
-                Making the future
-                <br />
-                work for <em>everyone</em>.
-              </>
-            )}
+            {lang === 'zh' ? <><span>让未来，</span><br /><span>对每个人都<em className="hero-highlight-zh">好用</em>。</span></> : <><span>Making the future</span><br /><span>work for <em>everyone</em>.</span></>}
           </h1>
         </div>
       </section>
-
       <AboutSection lang={lang} />
-      <FeaturesSection />
+      <FeaturesSection lang={lang} />
       <ReportsPreview lang={lang} />
-
       <section className="about-deerlight" id="about-deerlight">
-        <p className="about-deerlight-label">Deerlight.</p>
+        <p className="about-deerlight-label">{lang === 'zh' ? '小鹿光年' : 'Deerlight.'}</p>
         <div>
-          <h2>
-            {lang === 'zh'
-              ? 'AI 越来越强，更重要的是每个人都能真正使用它。'
-              : 'As AI grows more capable, what matters is whether everyone can truly use it.'}
-          </h2>
-          <p>
-            {lang === 'zh'
-              ? '小鹿光年从需要更多协助的 65+ 用户出发，构建更容易理解、信任和控制的 AI 产品。我们把复杂度留给系统，让好用、安心和选择权回到每个人手里。'
-              : 'Deerlight starts with people over 65 who need more support, then builds AI products that are easier to understand, trust, and control. Complexity stays inside the system; clarity, confidence, and choice stay with the person.'}
-          </p>
+          <h2>{lang === 'zh' ? '人工智能越来越强，更重要的是每个人都能真正使用它。' : 'As AI grows more capable, what matters is whether everyone can truly use it.'}</h2>
+          <p>{lang === 'zh' ? '小鹿光年从需要更多协助的银发用户出发，构建更容易理解、信任和控制的智能产品。我们把复杂度留给系统，让好用、安心和选择权回到每个人手里。' : 'Deerlight starts with older adults who need more support, then builds AI products that are easier to understand, trust, and control. Complexity stays inside the system; clarity, confidence, and choice stay with the person.'}</p>
           <a href="mailto:hello@deerlight.cn">hello@deerlight.cn</a>
         </div>
       </section>
