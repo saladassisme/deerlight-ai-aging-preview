@@ -1,0 +1,26 @@
+.skillhub-page .skill-gallery > article,
+.skillhub-page .skill-gallery > article.featured,
+.skillhub-page .skill-gallery > article:hover,
+.skillhub-page .skill-gallery > article.featured:hover {
+  background: #fff !important;
+  background-image: none !important;
+}
+
+.skillhub-page .skill-gallery > article.featured {
+  border-color: rgba(122, 141, 19, 0.34);
+}
+
+.skillhub-page .skill-gallery > article.featured .verified {
+  color: #7a8d13;
+  font-weight: 700;
+}
+
+.skillhub-page .skill-gallery > article.featured .verified svg {
+  color: #95a817;
+  fill: #e5f27d;
+}
+
+.skillhub-page .skill-gallery > article.featured .skill-icon {
+  background: #171915;
+  color: #dff08e;
+}
