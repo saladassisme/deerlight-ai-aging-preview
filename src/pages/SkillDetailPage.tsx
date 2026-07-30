@@ -15,21 +15,21 @@ type Props = {
 const detail = {
   'scam-check': {
     title: { zh: '反诈消息检查', en: 'Scam Message Check' },
-    eyebrow: { zh: '安全守护 Skill · 可立即体验', en: 'Safety skill · Live demo' },
+    eyebrow: { zh: '安全守护技能 · 可立即体验', en: 'Safety skill · Live demo' },
     summary: { zh: '粘贴短信、聊天或转账要求，识别可疑链接、催促话术和异常付款请求。', en: 'Paste a message or payment request to flag suspicious links, pressure tactics, and unusual transfers.' },
     icon: ShieldCheck,
     tone: 'lime',
   },
   'visit-prep': {
     title: { zh: '就医准备清单', en: 'Visit Prep' },
-    eyebrow: { zh: '健康支持 Skill · 可立即体验', en: 'Health skill · Live demo' },
+    eyebrow: { zh: '健康支持技能 · 可立即体验', en: 'Health skill · Live demo' },
     summary: { zh: '把零散症状、用药和担忧整理成一份就诊前可以直接使用的清单。', en: 'Turn scattered symptoms, medicines, and concerns into a practical appointment checklist.' },
     icon: HeartPulse,
     tone: 'blue',
   },
   'photo-memory': {
     title: { zh: '照片回忆讲述', en: 'Photo Memory Story' },
-    eyebrow: { zh: '家庭记忆 Skill · 可立即体验', en: 'Family memory skill · Live demo' },
+    eyebrow: { zh: '家庭记忆技能 · 可立即体验', en: 'Family memory skill · Live demo' },
     summary: { zh: '从一张老照片和几句线索出发，生成追问、故事草稿与家人共写提示。', en: 'Start from one old photo and a few clues to create prompts, a story draft, and family co-writing cues.' },
     icon: Image,
     tone: 'amber',
@@ -56,7 +56,7 @@ function ScamDemo({ lang }: { lang: Lang }) {
     {checked && <div className={`skill-result risk-${risk}`}>
       <div className="result-heading"><AlertTriangle size={22} /><strong>{risk === 'high' ? (lang === 'zh' ? '高风险' : 'High risk') : risk === 'medium' ? (lang === 'zh' ? '需要留意' : 'Review needed') : (lang === 'zh' ? '未发现明显风险' : 'No obvious risk')}</strong></div>
       {signals.length > 0 ? <ul>{signals.map((item) => <li key={item}>{item}</li>)}</ul> : <p>{lang === 'zh' ? '没有检测到常见诈骗信号，但仍请核实发件人身份。' : 'No common scam signals found, but still verify the sender.'}</p>}
-      <p className="result-advice">{lang === 'zh' ? '建议：不要点击链接，不要提供验证码；通过官方 App 或官方电话自行联系机构核实。' : 'Advice: do not click the link or share codes. Verify through the official app or phone number.'}</p>
+      <p className="result-advice">{lang === 'zh' ? '建议：不要点击链接，不要提供验证码；通过官方应用或官方电话自行联系机构核实。' : 'Advice: do not click the link or share codes. Verify through the official app or phone number.'}</p>
     </div>}
   </div>
 }
@@ -79,7 +79,7 @@ function VisitDemo({ lang }: { lang: Lang }) {
       <h4>{lang === 'zh' ? '用药信息' : 'Medication note'}</h4><p>{medicine || '—'}</p>
       <h4>{lang === 'zh' ? '建议提问' : 'Questions to ask'}</h4>
       <ol><li>{concern || (lang === 'zh' ? '这可能与什么原因有关？' : 'What might be causing this?')}</li><li>{lang === 'zh' ? '是否需要检查？出现哪些情况应立即就医？' : 'Do I need tests, and which warning signs require urgent care?'}</li><li>{lang === 'zh' ? '现有药物是否需要调整或带药盒确认？' : 'Should current medication be adjusted or brought in for review?'}</li></ol>
-      <p className="result-disclaimer">{lang === 'zh' ? '本 Skill 只整理信息，不提供诊断。紧急不适请及时联系急救或医疗机构。' : 'This skill organizes information and does not diagnose. Seek urgent medical care for emergencies.'}</p>
+      <p className="result-disclaimer">{lang === 'zh' ? '本技能只整理信息，不提供诊断。紧急不适请及时联系急救或医疗机构。' : 'This skill organizes information and does not diagnose. Seek urgent medical care for emergencies.'}</p>
     </div>}
   </div>
 }
@@ -114,7 +114,7 @@ export default function SkillDetailPage({ lang, setLang, slug }: Props) {
     <section className="skill-detail-hero">
       <Navbar lang={lang} setLang={setLang} light />
       <div className="skill-detail-hero-inner">
-        <a className="skill-back-link" href="/skillhub"><ArrowLeft size={17} />{lang === 'zh' ? '返回 SkillHub' : 'Back to SkillHub'}</a>
+        <a className="skill-back-link" href="/skillhub"><ArrowLeft size={17} />{lang === 'zh' ? '返回技能中心' : 'Back to SkillHub'}</a>
         <div className="skill-detail-icon"><Icon size={30} /></div>
         <span>{item.eyebrow[lang]}</span>
         <h1>{item.title[lang]}</h1>
@@ -122,7 +122,7 @@ export default function SkillDetailPage({ lang, setLang, slug }: Props) {
       </div>
     </section>
     <section className="skill-live-section">
-      <div className="skill-live-heading"><span>LIVE DEMO</span><h2>{lang === 'zh' ? '现在就试一次' : 'Try it now'}</h2><p>{lang === 'zh' ? '这是可操作的前端原型：输入内容后会即时生成结构化结果，不需要登录，也不会上传数据。' : 'This is an interactive front-end prototype. It creates structured results locally without login or uploading data.'}</p></div>
+      <div className="skill-live-heading"><span>{lang === 'zh' ? '实时体验' : 'LIVE DEMO'}</span><h2>{lang === 'zh' ? '现在就试一次' : 'Try it now'}</h2><p>{lang === 'zh' ? '这是可操作的前端原型：输入内容后会即时生成结构化结果，不需要登录，也不会上传数据。' : 'This is an interactive front-end prototype. It creates structured results locally without login or uploading data.'}</p></div>
       {slug === 'scam-check' && <ScamDemo lang={lang} />}
       {slug === 'visit-prep' && <VisitDemo lang={lang} />}
       {slug === 'photo-memory' && <PhotoDemo lang={lang} />}
