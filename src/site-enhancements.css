@@ -7,92 +7,6 @@
   box-shadow: 0 16px 54px rgba(0, 0, 0, 0.18) !important;
 }
 
-/* Homepage positioning */
-.home-hero-copy {
-  max-width: 1380px;
-  padding-bottom: clamp(54px, 7vh, 94px);
-}
-.home-hero-definition {
-  max-width: 720px;
-  margin: 26px 0 0;
-  font-size: clamp(18px, 1.7vw, 24px);
-  line-height: 1.65;
-  color: rgba(255,255,255,.82);
-  text-wrap: balance;
-}
-.home-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-.home-hero-actions a {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 18px;
-  border: 1px solid rgba(255,255,255,.9);
-  border-radius: 999px;
-  background: #fff;
-  color: #17130e;
-  font-size: 14px;
-  font-weight: 600;
-  transition: transform .2s ease, background .2s ease;
-}
-.home-hero-actions a:hover { transform: translateY(-2px); }
-.home-hero-actions a.secondary { background: rgba(15,15,14,.32); color: #fff; backdrop-filter: blur(16px); }
-
-/* Richer product cards */
-.home-card-heading > div:first-child { max-width: 760px; }
-.home-card-heading h3 { margin: 10px 0 12px; }
-.home-card-heading p {
-  max-width: 680px;
-  margin: 0;
-  font-size: clamp(16px, 1.5vw, 21px);
-  line-height: 1.65;
-  color: rgba(50,28,4,.68);
-}
-.home-card-heading small {
-  display: block;
-  margin-top: 14px;
-  font-size: 12px;
-  letter-spacing: .04em;
-  color: rgba(50,28,4,.48);
-}
-.product-status {
-  display: inline-flex;
-  padding: 7px 10px;
-  border-radius: 999px;
-  background: rgba(50,28,4,.08);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-/* Public progress and proof */
-.home-progress {
-  padding: clamp(96px, 12vw, 170px) 32px;
-  background: #f5f1e9;
-}
-.home-progress-heading,
-.home-progress-grid,
-.home-progress-note { width: min(1380px, calc(100% - 0px)); margin-left: auto; margin-right: auto; }
-.home-progress-heading {
-  display: grid;
-  grid-template-columns: 160px minmax(0, 1.4fr) minmax(280px, .7fr);
-  gap: 42px;
-  align-items: start;
-}
-.home-progress-heading > span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(30,28,24,.45); }
-.home-progress-heading h2 { margin: 0; font-size: clamp(42px, 5vw, 76px); line-height: 1.04; letter-spacing: -.055em; font-weight: 500; }
-.home-progress-heading p { margin: 5px 0 0; font-size: 17px; line-height: 1.8; color: rgba(30,28,24,.58); }
-.home-progress-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1px; margin-top: 70px; background: rgba(30,28,24,.12); }
-.home-progress-grid article { min-height: 220px; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; background: #fff; }
-.home-progress-grid strong { font-size: clamp(40px, 4.6vw, 72px); line-height: 1; letter-spacing: -.055em; font-weight: 500; }
-.home-progress-grid p { margin: 16px 0 0; max-width: 220px; line-height: 1.6; color: rgba(30,28,24,.55); }
-.home-progress-note { margin-top: 18px; font-size: 11px; line-height: 1.7; color: rgba(30,28,24,.4); }
-
 /* Page-specific conversion form */
 .contact-band {
   width: 100%;
@@ -136,30 +50,18 @@
   cursor: pointer;
 }
 
-/* Every Skill is now live */
+/* Every Skill remains live */
 .skillhub-page .market-modal { width: min(1180px, 100%); }
 .skillhub-page .skill-gallery .skill-card-action { justify-content: space-between; }
 
 @media (max-width: 900px) {
   .main-nav, .product-page .product-hero .main-nav { top: 10px !important; }
-  .home-progress-heading { grid-template-columns: 1fr; gap: 18px; }
-  .home-progress-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .contact-band { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 620px) {
-  .home-hero-definition { font-size: 17px; line-height: 1.7; }
-  .home-hero-actions { display: grid; }
-  .home-hero-actions a { justify-content: space-between; }
-  .home-progress { padding-left: 18px; padding-right: 18px; }
-  .home-progress-grid { grid-template-columns: 1fr; }
-  .home-progress-grid article { min-height: 160px; }
   .contact-band { padding-left: 18px; padding-right: 18px; }
   .contact-band-form { grid-template-columns: 1fr; }
   .contact-band-form .contact-message,
   .contact-band-form button { grid-column: 1; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-hero-actions a { transition: none; }
 }
