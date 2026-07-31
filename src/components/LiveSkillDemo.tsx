@@ -1,10 +1,11 @@
 import { AlertTriangle, CheckCircle2, LoaderCircle, Play, Sparkles } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import type { Lang, SkillItem } from '../data'
-import { getLiveSkillConfig, runLiveSkill, type SkillResult } from '../skillDemos'
+import type { SkillResult } from '../skillDemos'
+import { getElderSkillConfig, getInstantSkillResult, runReliableSkill } from '../elderSkillExperience'
 
 export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang: Lang }) {
-  const config = getLiveSkillConfig(skill.id)
+  const config = getElderSkillConfig(skill.id)
   const [input, setInput] = useState('')
   const [result, setResult] = useState<SkillResult | null>(null)
   const [loading, setLoading] = useState(false)
@@ -12,8 +13,9 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
 
   useEffect(() => {
     if (!config) return
-    setInput(config.starters[lang][0])
-    setResult(null)
+    const firstExample = config.starters[lang][0]
+    setInput(firstExample)
+    setResult(getInstantSkillResult(skill.id, firstExample, lang))
     setError('')
   }, [config, lang, skill.id])
 
@@ -22,35 +24,53 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
   const run = async (value = input) => {
     const normalized = value.trim()
     if (normalized.length < 3) {
-      setError(lang === 'zh' ? '请先输入一些内容。' : 'Please enter some content first.')
+      setError(lang === 'zh' ? '您先随便说几句遇到的情况就可以。' : 'Please tell us a little about what happened.')
       return
     }
+
     setLoading(true)
     setError('')
-    setResult(null)
-    const next = await runLiveSkill(skill.id, normalized, lang)
-    setResult(next)
+    setResult(getInstantSkillResult(skill.id, normalized, lang))
+
+    try {
+      const next = await runReliableSkill(skill.id, normalized, lang)
+      setResult(next)
+    } catch {
+      setResult(getInstantSkillResult(skill.id, normalized, lang))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const chooseExample = (starter: string) => {
+    setInput(starter)
+    setError('')
     setLoading(false)
+    setResult(getInstantSkillResult(skill.id, starter, lang))
   }
 
   return <div className="live-skill-demo">
     <div className="live-skill-input-panel">
       <div className="live-skill-panel-heading">
-        <span>{lang === 'zh' ? '真实输入' : 'Live input'}</span>
-        <strong>{lang === 'zh' ? '这个技能会真正处理你输入的内容' : 'This skill actually processes your input'}</strong>
+        <span>{lang === 'zh' ? '像平时说话一样' : 'Use your own words'}</span>
+        <strong>{lang === 'zh' ? '不用写得正式，您怎么说都可以' : 'No formal wording is needed'}</strong>
       </div>
       <label>
         <span>{config.inputLabel[lang]}</span>
         <textarea
           value={input}
-          onChange={(event) => setInput(event.target.value)}
+          onChange={(event) => {
+            const value = event.target.value
+            setInput(value)
+            setResult(value.trim().length >= 3 ? getInstantSkillResult(skill.id, value, lang) : null)
+          }}
           placeholder={config.placeholder[lang]}
           rows={6}
         />
       </label>
       <div className="live-skill-examples">
-        <small>{lang === 'zh' ? '试一个真实案例' : 'Try a real case'}</small>
-        {config.starters[lang].map((starter, index) => <button key={starter} type="button" onClick={() => { setInput(starter); setResult(null) }}>
+        <small>{lang === 'zh' ? '也可以点一个相近的情况' : 'Or choose a similar situation'}</small>
+        {config.starters[lang].map((starter, index) => <button key={starter} type="button" onClick={() => chooseExample(starter)}>
           <span>{String(index + 1).padStart(2, '0')}</span>
           <p>{starter}</p>
         </button>)}
@@ -58,30 +78,30 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
       {error && <p className="live-skill-error">{error}</p>}
       <button className="run-live-skill" type="button" onClick={() => run()} disabled={loading}>
         {loading ? <LoaderCircle className="spin" size={18} /> : <Play size={18} />}
-        {loading ? (lang === 'zh' ? '技能正在运行…' : 'Running skill…') : (lang === 'zh' ? '运行这个技能' : 'Run this skill')}
+        {loading ? (lang === 'zh' ? '正在帮您整理…' : 'Organizing it for you…') : (lang === 'zh' ? '帮我处理一下' : 'Help me with this')}
       </button>
     </div>
 
     <div className="live-skill-result-panel">
       <div className="conversation-toolbar">
-        <span>{lang === 'zh' ? '技能运行结果' : 'Skill output'}</span>
-        <i>{result?.engine === 'ai' ? 'AI' : result ? (lang === 'zh' ? '本地引擎' : 'Local engine') : '○'}</i>
+        <span>{lang === 'zh' ? '技能处理结果' : 'Skill output'}</span>
+        <i>{result?.engine === 'ai' ? 'AI' : result ? (lang === 'zh' ? '已生成' : 'Ready') : '○'}</i>
       </div>
       {!result && !loading && <div className="live-result-empty">
         <Sparkles size={28} />
-        <h3>{lang === 'zh' ? '这里会展示结构化结果' : 'Structured output appears here'}</h3>
-        <p>{lang === 'zh' ? '它不是预先写好的固定回复。运行后，技能会根据当前输入重新分析和生成结果。' : 'This is not a fixed canned reply. The skill analyzes the current input and generates a fresh result.'}</p>
+        <h3>{lang === 'zh' ? '把情况说出来，这里马上给您结果' : 'Describe the situation to see a result'}</h3>
+        <p>{lang === 'zh' ? '不用学提示词，也不用写完整句子。系统会先听懂您的意思，再把事情整理清楚。' : 'No prompt-writing skills are needed. The system first understands the situation, then organizes it clearly.'}</p>
       </div>}
-      {loading && <div className="live-result-loading">
+      {loading && !result && <div className="live-result-loading">
         <LoaderCircle className="spin" size={30} />
-        <h3>{lang === 'zh' ? '正在调用技能能力' : 'Calling skill capabilities'}</h3>
-        <p>{lang === 'zh' ? '分析输入、应用技能规则并组织结果。' : 'Analyzing input, applying skill rules, and organizing the result.'}</p>
+        <h3>{lang === 'zh' ? '正在帮您处理' : 'Working on it'}</h3>
+        <p>{lang === 'zh' ? '先把情况听明白，再给出清楚的下一步。' : 'Understanding the situation and preparing clear next steps.'}</p>
       </div>}
       {result && <div className={`live-skill-result risk-${result.level ?? 'low'}`}>
         <div className="live-result-title">
           {result.level === 'high' ? <AlertTriangle size={24} /> : <CheckCircle2 size={24} />}
           <div>
-            <small>{result.engine === 'ai' ? (lang === 'zh' ? 'AI + Skill 生成' : 'AI + Skill generated') : (lang === 'zh' ? 'Skill 本地引擎生成' : 'Skill local engine generated')}</small>
+            <small>{result.engine === 'ai' ? (lang === 'zh' ? 'AI + 技能生成' : 'AI + Skill generated') : (lang === 'zh' ? '技能已根据当前内容生成' : 'Generated from the current input')}</small>
             <h3>{result.title}</h3>
           </div>
         </div>
