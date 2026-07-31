@@ -12,18 +12,25 @@
   width: 100%;
   padding: clamp(84px, 10vw, 136px) max(28px, calc((100vw - 1380px) / 2));
   display: block !important;
+  text-align: left;
 }
 .contact-band-inner {
-  width: min(1180px, 100%);
-  margin: 0 auto;
+  width: min(1380px, 100%);
+  margin: 0;
 }
 .contact-band-header {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(300px, .65fr);
   gap: clamp(42px, 8vw, 120px);
-  align-items: end;
+  align-items: start;
   padding-bottom: clamp(44px, 6vw, 72px);
   border-bottom: 1px solid rgba(24, 20, 15, .24);
+  text-align: left;
+}
+.contact-band-title,
+.contact-band-intro {
+  justify-self: start;
+  text-align: left;
 }
 .contact-band-title > span {
   display: block;
@@ -32,18 +39,20 @@
   letter-spacing: .14em;
   text-transform: uppercase;
   opacity: .5;
+  text-align: left;
 }
 .contact-band-title h2 {
-  max-width: 760px;
+  max-width: 820px;
   margin: 0;
   font-size: clamp(46px, 6.2vw, 92px);
   line-height: .98;
   letter-spacing: -.06em;
   font-weight: 500;
-  text-wrap: balance;
+  text-wrap: pretty;
+  text-align: left;
 }
 .contact-band-intro {
-  padding-bottom: 7px;
+  padding-top: 34px;
 }
 .contact-band-intro p {
   max-width: 460px;
@@ -51,6 +60,7 @@
   font-size: 17px;
   line-height: 1.75;
   opacity: .66;
+  text-align: left;
 }
 .contact-band-intro a {
   display: inline-flex;
@@ -66,10 +76,12 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 28px 20px;
   padding-top: clamp(44px, 6vw, 72px);
+  text-align: left;
 }
 .contact-band-form label {
   display: grid;
   gap: 10px;
+  text-align: left;
 }
 .contact-band-form label:nth-child(1),
 .contact-band-form label:nth-child(2),
@@ -80,6 +92,7 @@
   font-size: 11px;
   font-weight: 600;
   opacity: .62;
+  text-align: left;
 }
 .contact-band-form input,
 .contact-band-form textarea {
@@ -90,6 +103,7 @@
   background: rgba(255, 255, 255, .16);
   color: inherit;
   resize: vertical;
+  text-align: left;
   transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 .contact-band-form input {
@@ -112,9 +126,11 @@
 .contact-band-form-footer {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 18px;
+  align-items: flex-start;
+  text-align: left;
 }
 .contact-band-form-footer p {
   max-width: 520px;
@@ -122,6 +138,7 @@
   font-size: 12px;
   line-height: 1.65;
   opacity: .48;
+  text-align: left;
 }
 .contact-band-form button {
   display: inline-flex;
@@ -154,6 +171,9 @@
     grid-template-columns: 1fr;
     gap: 26px;
     align-items: start;
+  }
+  .contact-band-intro {
+    padding-top: 0;
   }
   .contact-band-title h2 {
     max-width: 720px;
@@ -192,7 +212,6 @@
   }
   .contact-band-form-footer {
     align-items: stretch;
-    flex-direction: column;
   }
   .contact-band-form button {
     width: 100%;
