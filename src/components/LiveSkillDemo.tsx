@@ -29,7 +29,7 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
   const run = async (value = input) => {
     const normalized = value.trim()
     if (normalized.length < 3) {
-      setError(lang === 'zh' ? '您先随便说几句遇到的情况就可以。' : 'Please tell us a little about what happened.')
+      setError(lang === 'zh' ? '您先说几句遇到的情况就可以。' : 'Please tell us a little about what happened.')
       return
     }
 
@@ -60,13 +60,9 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
   }
 
   return <div className="live-skill-demo">
-    <div className="live-skill-input-panel">
-      <div className="live-skill-panel-heading">
-        <span>{lang === 'zh' ? '像平时说话一样' : 'Use your own words'}</span>
-        <strong>{lang === 'zh' ? '不用写得正式，您怎么说都可以' : 'No formal wording is needed'}</strong>
-      </div>
-      <label>
-        <span>{config.inputLabel[lang]}</span>
+    <section className="live-skill-input-panel">
+      <label className="live-skill-main-field">
+        <span>{lang === 'zh' ? '说说您遇到的情况' : 'Tell us what happened'}</span>
         <textarea
           value={input}
           onChange={(event) => {
@@ -78,45 +74,55 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
             setResult(value.trim().length >= 3 ? getInstantSkillResult(skill.id, value, lang) : null)
           }}
           placeholder={config.placeholder[lang]}
-          rows={6}
+          rows={5}
         />
       </label>
-      <div className="live-skill-examples">
-        <small>{lang === 'zh' ? '也可以点一个相近的情况' : 'Or choose a similar situation'}</small>
-        {config.starters[lang].map((starter, index) => <button key={starter} className={selectedExample === index ? 'active' : ''} type="button" onClick={() => chooseExample(starter, index)}>
-          <span>{String(index + 1).padStart(2, '0')}</span>
-          <p>{starter}</p>
-        </button>)}
-      </div>
-      {error && <p className="live-skill-error">{error}</p>}
-      <button className="run-live-skill" type="button" onClick={() => run()} disabled={loading}>
-        {loading ? <LoaderCircle className="spin" size={18} /> : <Play size={18} />}
-        {loading ? (lang === 'zh' ? '正在帮您整理…' : 'Organizing it for you…') : (lang === 'zh' ? '帮我处理一下' : 'Help me with this')}
-      </button>
-    </div>
 
-    <div className="live-skill-result-panel">
-      <div className="conversation-toolbar">
-        <span>{lang === 'zh' ? '技能处理结果' : 'Skill output'}</span>
-        <i>{result?.engine === 'ai' ? 'AI' : result ? (lang === 'zh' ? '已生成' : 'Ready') : '○'}</i>
+      <div className="live-skill-examples">
+        <small>{lang === 'zh' ? '也可以直接选择一个例子' : 'Or choose an example'}</small>
+        <div className="live-skill-example-list">
+          {config.starters[lang].map((starter, index) => <button
+            key={starter}
+            className={selectedExample === index ? 'active' : ''}
+            type="button"
+            aria-pressed={selectedExample === index}
+            onClick={() => chooseExample(starter, index)}
+          >
+            <span>{index + 1}</span>
+            <p>{starter}</p>
+          </button>)}
+        </div>
       </div>
+
+      <div className="live-skill-actions">
+        {error && <p className="live-skill-error">{error}</p>}
+        <button className="run-live-skill" type="button" onClick={() => run()} disabled={loading}>
+          {loading ? <LoaderCircle className="spin" size={17} /> : <Play size={17} />}
+          {loading ? (lang === 'zh' ? '正在处理…' : 'Working…') : (lang === 'zh' ? '帮我处理一下' : 'Help me with this')}
+        </button>
+      </div>
+    </section>
+
+    <section className="live-skill-result-panel">
+      <div className="conversation-toolbar">
+        <span>{lang === 'zh' ? '处理结果' : 'Result'}</span>
+        <i className={loading ? 'is-loading' : ''}>{loading ? (lang === 'zh' ? '处理中' : 'Working') : result?.engine === 'ai' ? 'AI' : result ? (lang === 'zh' ? '已完成' : 'Ready') : '—'}</i>
+      </div>
+
       {!result && !loading && <div className="live-result-empty">
-        <Sparkles size={28} />
-        <h3>{lang === 'zh' ? '把情况说出来，这里马上给您结果' : 'Describe the situation to see a result'}</h3>
-        <p>{lang === 'zh' ? '不用学提示词，也不用写完整句子。系统会先听懂您的意思，再把事情整理清楚。' : 'No prompt-writing skills are needed. The system first understands the situation, then organizes it clearly.'}</p>
+        <Sparkles size={24} />
+        <h3>{lang === 'zh' ? '结果会显示在这里' : 'Your result appears here'}</h3>
       </div>}
+
       {loading && !result && <div className="live-result-loading">
-        <LoaderCircle className="spin" size={30} />
+        <LoaderCircle className="spin" size={26} />
         <h3>{lang === 'zh' ? '正在帮您处理' : 'Working on it'}</h3>
-        <p>{lang === 'zh' ? '先把情况听明白，再给出清楚的下一步。' : 'Understanding the situation and preparing clear next steps.'}</p>
       </div>}
+
       {result && <div className={`live-skill-result risk-${result.level ?? 'low'}`}>
         <div className="live-result-title">
-          {result.level === 'high' ? <AlertTriangle size={24} /> : <CheckCircle2 size={24} />}
-          <div>
-            <small>{result.engine === 'ai' ? (lang === 'zh' ? 'AI + 技能生成' : 'AI + Skill generated') : (lang === 'zh' ? '技能已根据当前内容生成' : 'Generated from the current input')}</small>
-            <h3>{result.title}</h3>
-          </div>
+          {result.level === 'high' ? <AlertTriangle size={21} /> : <CheckCircle2 size={21} />}
+          <h3>{result.title}</h3>
         </div>
         <p className="live-result-summary">{result.summary}</p>
         <div className="live-result-sections">
@@ -127,6 +133,6 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
         </div>
         {result.note && <p className="live-result-note">{result.note}</p>}
       </div>}
-    </div>
+    </section>
   </div>
 }
