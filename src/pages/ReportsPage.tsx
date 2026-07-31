@@ -6,6 +6,7 @@ import type { Lang } from '../data'
 import { tx } from '../data'
 import type { ReportCategory } from '../reportData'
 import { reportCategories, reports } from '../reportData'
+import '../reports-originals.css'
 
 const copy = {
   zh: { title: '洞察报告', statement: '关于人工智能、数字生活与年龄的研究、文章和重要数据。', lead: '这里同时收录小鹿光年的原创方法与全球高质量研究。外部精选会带你回到原始来源。', search: '搜索标题、来源或主题', empty: '没有找到匹配的内容，试试其他关键词。', count: '篇内容', curated: '小鹿光年精选', topics: '报告主题', originals: 'Deerlight Originals', originalLead: '来自真实产品、用户研究与原型实践的方法和观察。' },
