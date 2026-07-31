@@ -97,18 +97,29 @@ export default function App() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const observed = new WeakSet<Element>()
     const observer = reducedMotion ? null : new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); observer?.unobserve(entry.target) } }), { threshold: 0.08, rootMargin: '0px 0px -7% 0px' })
+
     const enhancePage = () => {
       document.querySelectorAll<HTMLElement>('.skillhub-page .skill-gallery > article').forEach((card) => {
         const title = card.querySelector('h3')?.textContent?.trim() ?? ''
         const icon = card.querySelector<HTMLElement>('.skill-icon')
         if (icon && skillIconByTitle[title]) { icon.dataset.symbol = skillIconByTitle[title]; icon.setAttribute('aria-label', title) }
       })
+
+      document.querySelectorAll<HTMLElement>('.skillhub-page .skill-provider strong, .skillhub-page .modal-price strong').forEach((price) => {
+        if (price.dataset.subscriptionNormalized === lang) return
+        const original = price.textContent?.trim() ?? ''
+        const free = /免费|free/i.test(original)
+        price.textContent = free ? (lang === 'zh' ? '免费' : 'Free') : (lang === 'zh' ? '¥18 / 月 · ¥168 / 年' : '¥18 / month · ¥168 / year')
+        price.dataset.subscriptionNormalized = lang
+      })
+
       document.querySelectorAll<HTMLElement>('.product-page section, .product-page article, .product-page .section-title, .product-page .product-hero-copy > *').forEach((element, index) => {
         if (observed.has(element)) return
         observed.add(element); element.classList.add('scroll-reveal'); element.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 55}ms`)
         if (reducedMotion) element.classList.add('is-revealed'); else observer?.observe(element)
       })
     }
+
     enhancePage()
     const mutationObserver = new MutationObserver(enhancePage)
     mutationObserver.observe(document.body, { childList: true, subtree: true })
