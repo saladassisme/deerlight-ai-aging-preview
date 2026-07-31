@@ -61,16 +61,32 @@ export function ContactBand({ lang, title }: { lang: Lang; title?: string }) {
     const body = encodeURIComponent(`${lang === 'zh' ? '姓名' : 'Name'}: ${name}\n${lang === 'zh' ? '邮箱' : 'Email'}: ${email}\n${lang === 'zh' ? '身份/机构' : 'Role / organization'}: ${role}\n\n${message}`)
     window.location.href = `mailto:hello@deerlight.cn?subject=${subject}&body=${body}`
   }
+
   return (
     <section className="contact-band">
-      <div className="contact-band-copy"><span>{lang === 'zh' ? '开始合作' : 'Start a conversation'}</span><h2>{title ?? defaultTitle}</h2><p>{lead}</p><a href="mailto:hello@deerlight.cn">hello@deerlight.cn<ArrowUpRight size={18} /></a></div>
-      <form className="contact-band-form" onSubmit={submit}>
-        <label><span>{lang === 'zh' ? '姓名' : 'Name'}</span><input name="name" autoComplete="name" required /></label>
-        <label><span>{lang === 'zh' ? '邮箱' : 'Email'}</span><input name="email" type="email" autoComplete="email" required /></label>
-        <label><span>{lang === 'zh' ? '身份或机构' : 'Role or organization'}</span><input name="role" autoComplete="organization-title" /></label>
-        <label className="contact-message"><span>{lang === 'zh' ? '你希望讨论什么？' : 'What would you like to discuss?'}</span><textarea name="message" rows={3} required /></label>
-        <button type="submit">{lang === 'zh' ? '生成联系邮件' : 'Create email'}<Send size={16} /></button>
-      </form>
+      <div className="contact-band-inner">
+        <header className="contact-band-header">
+          <div className="contact-band-title">
+            <span>{lang === 'zh' ? '开始合作' : 'Start a conversation'}</span>
+            <h2>{title ?? defaultTitle}</h2>
+          </div>
+          <div className="contact-band-intro">
+            <p>{lead}</p>
+            <a href="mailto:hello@deerlight.cn">hello@deerlight.cn<ArrowUpRight size={18} /></a>
+          </div>
+        </header>
+
+        <form className="contact-band-form" onSubmit={submit}>
+          <label><span>{lang === 'zh' ? '姓名' : 'Name'}</span><input name="name" autoComplete="name" required /></label>
+          <label><span>{lang === 'zh' ? '邮箱' : 'Email'}</span><input name="email" type="email" autoComplete="email" required /></label>
+          <label><span>{lang === 'zh' ? '身份或机构' : 'Role or organization'}</span><input name="role" autoComplete="organization-title" /></label>
+          <label className="contact-message"><span>{lang === 'zh' ? '你希望讨论什么？' : 'What would you like to discuss?'}</span><textarea name="message" rows={4} required /></label>
+          <div className="contact-band-form-footer">
+            <p>{lang === 'zh' ? '点击后会打开你的默认邮件应用，内容仍由你确认后发送。' : 'This opens your default email app. You can review everything before sending.'}</p>
+            <button type="submit">{lang === 'zh' ? '生成联系邮件' : 'Create email'}<Send size={16} /></button>
+          </div>
+        </form>
+      </div>
     </section>
   )
 }
