@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deerlight-ai-aging-preview-live.vercel.app/sitemap.xml
