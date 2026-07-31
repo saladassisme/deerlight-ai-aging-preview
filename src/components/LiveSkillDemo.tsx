@@ -1,23 +1,26 @@
 import { AlertTriangle, CheckCircle2, LoaderCircle, Play, Sparkles } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Lang, SkillItem } from '../data'
 import type { SkillResult } from '../skillDemos'
 import { getElderSkillConfig, getInstantSkillResult, runReliableSkill } from '../elderSkillExperience'
 
 export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang: Lang }) {
-  const config = getElderSkillConfig(skill.id)
+  const config = useMemo(() => getElderSkillConfig(skill.id), [skill.id])
   const [input, setInput] = useState('')
   const [result, setResult] = useState<SkillResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [selectedExample, setSelectedExample] = useState<number | null>(0)
 
   useEffect(() => {
     if (!config) return
     const firstExample = config.starters[lang][0]
     setInput(firstExample)
     setResult(getInstantSkillResult(skill.id, firstExample, lang))
+    setSelectedExample(0)
+    setLoading(false)
     setError('')
-  }, [config, lang, skill.id])
+  }, [skill.id, lang, config])
 
   if (!config) return null
 
@@ -42,7 +45,8 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
     }
   }
 
-  const chooseExample = (starter: string) => {
+  const chooseExample = (starter: string, index: number) => {
+    setSelectedExample(index)
     setInput(starter)
     setError('')
     setLoading(false)
@@ -61,6 +65,7 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
           value={input}
           onChange={(event) => {
             const value = event.target.value
+            setSelectedExample(null)
             setInput(value)
             setResult(value.trim().length >= 3 ? getInstantSkillResult(skill.id, value, lang) : null)
           }}
@@ -70,7 +75,7 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
       </label>
       <div className="live-skill-examples">
         <small>{lang === 'zh' ? '也可以点一个相近的情况' : 'Or choose a similar situation'}</small>
-        {config.starters[lang].map((starter, index) => <button key={starter} type="button" onClick={() => chooseExample(starter)}>
+        {config.starters[lang].map((starter, index) => <button key={starter} className={selectedExample === index ? 'active' : ''} type="button" onClick={() => chooseExample(starter, index)}>
           <span>{String(index + 1).padStart(2, '0')}</span>
           <p>{starter}</p>
         </button>)}
