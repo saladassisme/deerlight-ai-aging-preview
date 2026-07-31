@@ -1,5 +1,5 @@
 import { AlertTriangle, CheckCircle2, LoaderCircle, Play, Sparkles } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Lang, SkillItem } from '../data'
 import type { SkillResult } from '../skillDemos'
 import { getElderSkillConfig, getInstantSkillResult, runReliableSkill } from '../elderSkillExperience'
@@ -11,9 +11,11 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [selectedExample, setSelectedExample] = useState<number | null>(0)
+  const requestIdRef = useRef(0)
 
   useEffect(() => {
     if (!config) return
+    requestIdRef.current += 1
     const firstExample = config.starters[lang][0]
     setInput(firstExample)
     setResult(getInstantSkillResult(skill.id, firstExample, lang))
@@ -31,26 +33,30 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
       return
     }
 
+    const requestId = requestIdRef.current + 1
+    requestIdRef.current = requestId
     setLoading(true)
     setError('')
     setResult(getInstantSkillResult(skill.id, normalized, lang))
 
     try {
       const next = await runReliableSkill(skill.id, normalized, lang)
-      setResult(next)
+      if (requestIdRef.current === requestId) setResult(next)
     } catch {
-      setResult(getInstantSkillResult(skill.id, normalized, lang))
+      if (requestIdRef.current === requestId) setResult(getInstantSkillResult(skill.id, normalized, lang))
     } finally {
-      setLoading(false)
+      if (requestIdRef.current === requestId) setLoading(false)
     }
   }
 
   const chooseExample = (starter: string, index: number) => {
+    requestIdRef.current += 1
     setSelectedExample(index)
     setInput(starter)
     setError('')
     setLoading(false)
     setResult(getInstantSkillResult(skill.id, starter, lang))
+    void run(starter)
   }
 
   return <div className="live-skill-demo">
@@ -65,6 +71,8 @@ export default function LiveSkillDemo({ skill, lang }: { skill: SkillItem; lang:
           value={input}
           onChange={(event) => {
             const value = event.target.value
+            requestIdRef.current += 1
+            setLoading(false)
             setSelectedExample(null)
             setInput(value)
             setResult(value.trim().length >= 3 ? getInstantSkillResult(skill.id, value, lang) : null)
