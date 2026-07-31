@@ -15,8 +15,9 @@
   text-align: left;
 }
 .contact-band-inner {
-  width: min(1380px, 100%);
-  margin: 0;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  text-align: left;
 }
 .contact-band-header {
   display: grid;
