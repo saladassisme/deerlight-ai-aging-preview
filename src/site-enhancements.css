@@ -10,58 +10,199 @@
 /* Page-specific conversion form */
 .contact-band {
   width: 100%;
-  padding: clamp(80px, 10vw, 132px) max(32px, calc((100vw - 1380px) / 2));
-  display: grid !important;
-  grid-template-columns: minmax(0,.8fr) minmax(460px,1.2fr);
-  gap: clamp(50px, 7vw, 110px);
-  align-items: start !important;
+  padding: clamp(84px, 10vw, 136px) max(28px, calc((100vw - 1380px) / 2));
+  display: block !important;
 }
-.contact-band-copy > span { display: block; margin-bottom: 20px; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; opacity: .48; }
-.contact-band-copy h2 { margin: 0; font-size: clamp(42px, 5vw, 76px); line-height: 1.02; letter-spacing: -.055em; font-weight: 500; }
-.contact-band-copy p { max-width: 520px; margin: 22px 0 28px; font-size: 17px; line-height: 1.75; opacity: .62; }
-.contact-band-copy > a { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; }
-.contact-band-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.contact-band-form label { display: grid; gap: 8px; }
-.contact-band-form label > span { font-size: 11px; font-weight: 600; opacity: .6; }
+.contact-band-inner {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+.contact-band-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, .65fr);
+  gap: clamp(42px, 8vw, 120px);
+  align-items: end;
+  padding-bottom: clamp(44px, 6vw, 72px);
+  border-bottom: 1px solid rgba(24, 20, 15, .24);
+}
+.contact-band-title > span {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+.contact-band-title h2 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(46px, 6.2vw, 92px);
+  line-height: .98;
+  letter-spacing: -.06em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+.contact-band-intro {
+  padding-bottom: 7px;
+}
+.contact-band-intro p {
+  max-width: 460px;
+  margin: 0 0 24px;
+  font-size: 17px;
+  line-height: 1.75;
+  opacity: .66;
+}
+.contact-band-intro a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 600;
+}
+.contact-band-form {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 28px 20px;
+  padding-top: clamp(44px, 6vw, 72px);
+}
+.contact-band-form label {
+  display: grid;
+  gap: 10px;
+}
+.contact-band-form label:nth-child(1),
+.contact-band-form label:nth-child(2),
+.contact-band-form label:nth-child(3) {
+  grid-column: span 4;
+}
+.contact-band-form label > span {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: .62;
+}
 .contact-band-form input,
 .contact-band-form textarea {
   width: 100%;
-  padding: 14px 15px;
-  border: 1px solid currentColor;
-  border-color: rgba(255,255,255,.18);
-  border-radius: 13px;
-  background: rgba(255,255,255,.07);
+  padding: 15px 16px;
+  border: 1px solid rgba(24, 20, 15, .26);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .16);
   color: inherit;
   resize: vertical;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
-.contact-band-form .contact-message { grid-column: 1 / -1; }
-.contact-band-form button {
+.contact-band-form input {
+  min-height: 56px;
+}
+.contact-band-form textarea {
+  min-height: 150px;
+  line-height: 1.65;
+}
+.contact-band-form input:focus,
+.contact-band-form textarea:focus {
+  outline: none;
+  border-color: rgba(24, 20, 15, .58);
+  background: rgba(255, 255, 255, .27);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, .12);
+}
+.contact-band-form .contact-message {
   grid-column: 1 / -1;
-  justify-self: start;
+}
+.contact-band-form-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+.contact-band-form-footer p {
+  max-width: 520px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+  opacity: .48;
+}
+.contact-band-form button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  padding: 13px 17px;
+  min-height: 52px;
+  padding: 0 22px;
   border: 0;
   border-radius: 999px;
   background: #e5f27d;
   color: #171915;
   font-weight: 700;
   cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.contact-band-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(20, 20, 15, .14);
 }
 
-/* Every Skill remains live */
+/* Every Skill is now live */
 .skillhub-page .market-modal { width: min(1180px, 100%); }
 .skillhub-page .skill-gallery .skill-card-action { justify-content: space-between; }
 
 @media (max-width: 900px) {
-  .main-nav, .product-page .product-hero .main-nav { top: 10px !important; }
-  .contact-band { grid-template-columns: 1fr; }
+  .main-nav,
+  .product-page .product-hero .main-nav { top: 10px !important; }
+  .contact-band-header {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    align-items: start;
+  }
+  .contact-band-title h2 {
+    max-width: 720px;
+  }
+  .contact-band-form label:nth-child(1),
+  .contact-band-form label:nth-child(2) {
+    grid-column: span 6;
+  }
+  .contact-band-form label:nth-child(3) {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 620px) {
-  .contact-band { padding-left: 18px; padding-right: 18px; }
-  .contact-band-form { grid-template-columns: 1fr; }
+  .contact-band {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .contact-band-header {
+    padding-bottom: 36px;
+  }
+  .contact-band-title h2 {
+    font-size: clamp(42px, 14vw, 62px);
+  }
+  .contact-band-form {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 36px;
+  }
+  .contact-band-form label:nth-child(1),
+  .contact-band-form label:nth-child(2),
+  .contact-band-form label:nth-child(3),
   .contact-band-form .contact-message,
-  .contact-band-form button { grid-column: 1; }
+  .contact-band-form-footer {
+    grid-column: 1;
+  }
+  .contact-band-form-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .contact-band-form button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-band-form button,
+  .contact-band-form input,
+  .contact-band-form textarea {
+    transition: none;
+  }
 }
